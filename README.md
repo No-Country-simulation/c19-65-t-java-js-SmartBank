@@ -48,69 +48,65 @@
 
 ## <span style="color: #2E86C1;">Tablas de la Base de Datos</span>
 
-### Usuarios
+### usuario
 | Columna        | Tipo         | Descripción                          |
 |----------------|--------------|--------------------------------------|
-| UUID           |              |                                      |
-| IDtipo_usuario |              | FK(Tipo de Usuario > IDtipo_usuario) |
-| Usuario        |              |                                      |
-| contraseña     |              |                                      |
-
-### Clientes
+| idUsuario       |   int        |                                      |
+| idtipoUsuario | int          | FK(Tipo de Usuario > IDtipo_usuario) |
+| usuario        | varchar(8)   |                                      |
+| contraseña     | varchar(8)   |                                      |
+### cliente
 | Columna           | Tipo         | Descripción                   |
 |-------------------|--------------|-------------------------------|
-| IDCliente         |              |                               |
-| email             |              |                               |
-| DNI               |              |                               |
-| Fecha Nacimiento  |              |                               |
-| Nombre            |              |                               |
-| Apellido          |              |                               |
-| Telefono          |              |                               |
-| Domicilio         |              |                               |
-| País              |              |                               |
-
+| idCliente         |  int         |                               |
+| email             |  varchar(25) |                               |
+| dni               |  int         |                               |
+| fechaNacimiento   |  date        |                               |
+| nombre            |  varchar(25) |                               |
+| apellido          |  varchar(25) |                               |
+| telefono          |  int         |                               |
+| domicilio         |  varchar(25) |                               |
+| pais              |  varchar(25) |                               |
+| idUsuario         |   int        |                               |
 ### Tipo de Usuario
 | Columna       | Tipo         | Descripción                   |
 |---------------|--------------|-------------------------------|
-| IDtipo_usuario|              |                               |
-| tipo_usuario  |              |                               |
-
-### Cuentas
+| idTipoUsuario|  int         |      Auto Incremental         |
+| tipoUsuario  |Varchar(8)    |                               |
+### Cuenta
 | Columna       | Tipo         | Descripción                        |
 |---------------|--------------|------------------------------------|
-| IDCuenta      |              |                                    |
-| #Cuenta       |              |                                    |
-| IDTipoCuenta  |              | FK(Tipos de Cuenta > IDTipoCuenta) |
-| Saldo         |              |                                    |
-| IDCliente     |              | FK(Clientes > IDCliente)           |
-
-### Clientes
+| idCuenta      | int          |                                    |
+| nroCuenta     | varchar(25)  |                                    |
+| idTipoCuenta  | int          | FK(Tipos de Cuenta > IDTipoCuenta) |
+| saldo         | int          |                                    |
+| idCliente     | int          | FK(Clientes > IDCliente)           |
+### Movimiento
 | Columna                | Tipo         | Descripción                   |
 |------------------------|--------------|-------------------------------|
-| IDMovimiento           |              |                               |
-| IDCuenta               |              | FK(Cuentas > IDCuenta)        |
-| Monto                  |              | (Monto transacción +/-)       |
-| Saldo                  |              |                               |
-| CtaOrigen              |              |                               |
-| CtaDestino             |              |                               |
-| Descripción Movimiento |              |                               |
-| Fecha Movimiento       |              |                               |
-
-### Clientes
+| idMovimiento           |  int         |                               |
+| idCuenta               |  int         | FK(Cuentas > IDCuenta)        |
+| monto                  |  int         | (Monto transacción +/-)       |
+| saldo                  |  int         |                               |
+| CtaOrigen              | varchar(25)  |                               |
+| CtaDestino             | varchar(25)  |                               |
+| Descripción Movimiento | varchar(25)  |                               |
+| Fecha Movimiento       |   date       |                               |
+### TipoCuenta
 | Columna      | Tipo         | Descripción                 |
 |--------------|--------------|-----------------------------|
 | IDTipoCuenta |              |                             |
-| Moneda       |              |                             |
-| Descripción  |              | (CtaAhorros / CtaCorriente) |
+| Moneda       | varchar(8)   |                             |
+| Descripción  | varchar(25)  | (CtaAhorros / CtaCorriente) |
 
 ----
-Características de administrador
-    Reiniciar contraseña
-    Bloquear cuenta
-    Rastrear transferencia
-    
-Características de empresa
-    Nombre de la empresa
-    Identificador
-    Titular de la cuenta
+- **Características de administrador**:
+  - Reiniciar contraseña
+  - Bloquear cuenta
+  - Rastrear transferencia
+        
+- **Características de empresa**:
+  - Nombre de la empresa
+  - Identificador
+  - Titular de la cuenta
     
