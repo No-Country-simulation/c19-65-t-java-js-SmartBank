@@ -1,10 +1,4 @@
 ---
-interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
-
 const { href, title, body } = Astro.props;
 ---
 
@@ -38,7 +32,7 @@ const { href, title, body } = Astro.props;
 		line-height: 1.4;
 		padding: calc(1.5rem - 1px);
 		border-radius: 8px;
-		color: white;
+		color: var(--font-color);
 		background-color: #23262d;
 		opacity: 0.8;
 	}
@@ -56,6 +50,6 @@ const { href, title, body } = Astro.props;
 		background-image: var(--accent-gradient);
 	}
 	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
+		color: var(--font-color);
 	}
 </style>
