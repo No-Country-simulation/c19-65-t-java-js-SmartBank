@@ -5,7 +5,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        dashboard: resolve(__dirname, 'dashboard/index.html'),
+        movimientos: resolve(__dirname, 'movimientos/index.html'),
+        crearCuenta: resolve(__dirname, 'crearCuenta/index.html'),
+        transferir: resolve(__dirname, 'transferir/index.html')
       }
     }
   },

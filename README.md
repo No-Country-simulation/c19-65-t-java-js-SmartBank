@@ -6,18 +6,17 @@
 
 ## <span>Vistas de la Aplicación</span>
 
-### Página Inicial
+### Página Inicial / Login
 - **Elementos**:
-  - Botones de Login y Registro
+  - **Login**:
+    - Nombre Usuario
+    - Contraseña
   - Información general sobre la plataforma
 
-### Autenticación
-- **Login**:
-  - Campos:
-    - Correo o cédula
-    - Contraseña
+### SignUp
 - **Registrarse**:
   - Campos:
+    - Nombre Usuario
     - Nombre
     - Apellidos
     - Correo Electrónico
@@ -26,7 +25,7 @@
     - Contraseña
     - Repetir contraseña
 
-### Página Principal (Recibir Notificaciones)
+### Dashboard (Recibir Notificaciones)
 - **Elementos**:
   - Información de la cuenta y saldos
   - Botones:
@@ -39,20 +38,20 @@
 ### Crear Cuenta
 - Descripción: Permite a los usuarios crear nuevas cuentas bancarias.
 
-### Movimientos
+### Movimientos <!-- TODO - Vista sin diseño en Figma -->
 - Descripción: Muestra el historial de transacciones de la cuenta.
 
 ### Transferir (Recibir Notificación)
 - Descripción: Permite a los usuarios transferir dinero entre cuentas y recibir notificaciones sobre la transacción.
   
 
-## <span style="color: #2E86C1;">Tablas de la Base de Datos</span>
+## <span>Tablas de la Base de Datos</span>
 
 ### usuario
 | Columna        | Tipo         | Descripción                          |
 |----------------|--------------|--------------------------------------|
-| idUsuario       |   int        |                                      |
-| idtipoUsuario | int          | FK(Tipo de Usuario > IDtipo_usuario) |
+| idUsuario      | int          |                                      |
+| idtipoUsuario  | int          | FK(Tipo de Usuario > IDtipo_usuario) |
 | usuario        | varchar(8)   |                                      |
 | contraseña     | varchar(8)   |                                      |
 ### cliente
@@ -67,12 +66,12 @@
 | telefono          |  int         |                               |
 | domicilio         |  varchar(25) |                               |
 | pais              |  varchar(25) |                               |
-| idUsuario         |   int        |                               |
+| idUsuario         |  int         |                               |
 ### Tipo de Usuario
 | Columna       | Tipo         | Descripción                   |
 |---------------|--------------|-------------------------------|
-| idTipoUsuario|  int         |      Auto Incremental         |
-| tipoUsuario  |Varchar(8)    |                               |
+| idTipoUsuario | int          |      Auto Incremental         |
+| tipoUsuario   | Varchar(8)   |                               |
 ### Cuenta
 | Columna       | Tipo         | Descripción                        |
 |---------------|--------------|------------------------------------|
