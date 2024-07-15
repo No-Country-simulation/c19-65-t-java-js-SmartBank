@@ -24,7 +24,7 @@ menuOptions['client'].forEach(({label, url}) => {
 
 //
 document.querySelector('#navBar').innerHTML = `
-  <div class="mx-auto w-full px-2 sm:px-6 lg:px-8 bg-root-navBar">
+  <div class="relative mx-auto w-full px-2 sm:px-6 lg:px-8 bg-root-navBar">
         <div class="h-16 flex justify-between">
           <!-- Icono Menu desplegable -->
           <div class="flex items-center">
@@ -72,13 +72,12 @@ document.querySelector('#navBar').innerHTML = `
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Dropdown menu, show/hide based on menu state. -->
-      <div class="hidden bg-root-navBar w-full sm:w-1/3" id="dropdown-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2">
-          ${renderMenu}
-          <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
+        <!-- Dropdown menu, show/hide based on menu state. -->
+        <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0" id="dropdown-menu">
+          <div class="space-y-1 px-2 pb-3 pt-2">
+            ${renderMenu}
+            <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
+          </div>
         </div>
       </div>`
 
