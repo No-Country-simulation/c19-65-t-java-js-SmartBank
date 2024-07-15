@@ -73,7 +73,7 @@ document.querySelector('#navBar').innerHTML = `
           </div>
         </div>
         <!-- Dropdown menu, show/hide based on menu state. -->
-        <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0" id="dropdown-menu">
+        <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0 z-10" id="dropdown-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             ${renderMenu}
             <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
