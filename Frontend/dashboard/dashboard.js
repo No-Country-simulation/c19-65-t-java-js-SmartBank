@@ -1,3 +1,2 @@
-import '@styles/style.css'
 import '@components/navBar.js'
-
+import '@styles/style.css'
