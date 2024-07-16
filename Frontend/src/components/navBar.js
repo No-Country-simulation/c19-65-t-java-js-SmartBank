@@ -82,7 +82,7 @@ document.querySelector('#navBar').innerHTML = `
       </div>`
 
 
-const $navBar = document.querySelector('nav')
+const $navBar = document.querySelector('#navBar')
 
 // Dropdown Main Menu
 const $menu = document.querySelector('#menu')
