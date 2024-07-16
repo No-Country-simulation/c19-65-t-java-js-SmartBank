@@ -13,7 +13,7 @@
     <nav id='navBar'></nav>
 
     <section class='flex flex-col items-center lg:items-normal'>
-      <select class='outline outline-1 p-3 lg:ml-32 mt-4 w-96 lg:w-[17rem] xl:min-w-[475px] rounded-xl text-lg' name="" id="">
+      <select class='outline outline-1 p-3 lg:ml-32 mt-4 w-96 lg:w-[17rem] xl:min-w-[475px] rounded-xl text-lg' id="accountsList">
         <option value="">Selecciona una cuenta</option>
         <option value="0800">0800 - Cuenta corriente</option>
       </select>
@@ -29,11 +29,18 @@
               <img class='hidden' src="/ver-desactivado.svg" alt="icono ver" />
             </button>
           </div>
-          <a href="/movimientos/?cuenta=123" target='_self' id='btn_Movimientos' class='absolute bottom-5 right-5 text-lg'>Ver resumen</a>
+          <a href="/movimientos/?cuenta=123" target='_self' id='lnk_Movimientos' class='absolute bottom-5 right-5 text-lg'>Ver resumen</a>
         </article>
-        <article class='bg-root-bg-card w-96 lg:w-[45%] xl:min-w-[475px] h-72 rounded-2xl p-5 relative flex justify-center'>
+        <article class='bg-root-bg-card w-96 lg:w-[45%] xl:min-w-[475px] h-72 rounded-2xl p-5 relative flex justify-center '>
           <h4 class='font-semibold text-xl absolute top-[-30px] left-5'>Mis Inversiones</h4>
-          <img class='max-h-full' src="/Inversiones.svg" alt="" />
+          <img class='max-h-full opacity-40' src="/Inversiones.svg" alt="Grafico inversiones" id='invGraph' />
+          <div class='absolute w-2/3 h-1/2 top-1/4 text-center' id='noInvMssg'>
+            <p class='text-xl'>
+              No tienes inversiones registradas en este momento. Para comenzar 
+              <br/> 
+              <a class='text-blue-900 font-bold pointer-events-none' href="#">haz click aquí</a>
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -41,11 +48,11 @@
     <section class='mx-32 my-4 h-auto'>
       <h3 class='font-semibold text-2xl mb-4'>Accesos rápidos</h3>
       <div class='flex flex-row flex-wrap gap-7 justify-evenly xl:justify-between h-auto'>
-        <a href='#QR' id='QR' class='bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#QR' id='QR' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/qr-activo.svg" alt="Logo: Código QR" />
           <p class='text-xl'>Generar QR</p>
         </a>
-        <a href='#prestamos' id='prestamos' class='bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#prestamos' id='prestamos' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/cash-activo.svg" alt="Logo: Prestamos" />
           <p class='text-xl'>Préstamos</p>
         </a>
@@ -53,7 +60,7 @@
           <img src="/transf-activo.svg" alt="Logo: Transferencias" />
           <p class='text-xl'>Transferencias</p>
         </a>
-        <a href='#promociones' id='promociones' class='bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#promociones' id='promociones' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/percent-activo.svg" alt="Logo: Promociones" />
           <p class='text-xl'>Promociones</p>
         </a>
