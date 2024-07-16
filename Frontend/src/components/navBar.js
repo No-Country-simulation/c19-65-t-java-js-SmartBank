@@ -82,26 +82,48 @@ document.querySelector('#navBar').innerHTML = `
       </div>`
 
 
+const $navBar = document.querySelector('nav')
+
 // Dropdown Main Menu
 const $menu = document.querySelector('#menu')
 const $menu_open = $menu.querySelector('#menu-open')
 const $menu_close = $menu.querySelector('#menu-close')
 const $dropdown_menu = document.querySelector('#dropdown-menu')
 
-$menu.addEventListener('click', (e) => {
-  const menuStatus = $menu.dataset.status === 'true'
+function toggleMenu (menuStatus) {
   $menu_open.style.display = menuStatus ? 'block' : 'none'
   $menu_close.style.display = menuStatus ? 'none' : 'block'
   $dropdown_menu.style.display = menuStatus ? 'none' : 'block'
   $menu.dataset.status = !menuStatus
+}
+
+$menu.addEventListener('click', (e) => {
+  const menuStatus = $menu.dataset.status === 'true'
+  toggleMenu(menuStatus)
 })
 
 // Dropdown User Menu
 const $user_menu_button = document.querySelector('#user-menu-button')
 const $user_menu = document.querySelector('#user-menu')
 
-$user_menu_button.addEventListener('click', () => {
-  const menuStatus = $user_menu.dataset.status === 'true'
+function toggleUserMenu (menuStatus) {
   $user_menu.style.display = menuStatus ? 'none' : 'block'
   $user_menu.dataset.status = !menuStatus
+}
+
+$user_menu_button.addEventListener('click', () => {
+  const menuStatus = $user_menu.dataset.status === 'true'
+  toggleUserMenu(menuStatus)
+})
+
+document.querySelector('body').addEventListener('click', (e) => {
+  const isNavBar = e.target.closest('nav')
+  const menuStatus = $menu.dataset.status === 'true' //dropdown menu
+  const UserMenuStatus = $user_menu.dataset.status === 'true'//user menu
+  
+  if(menuStatus && !isNavBar) 
+    toggleMenu(menuStatus)
+
+  if(UserMenuStatus && !isNavBar)
+    toggleUserMenu(UserMenuStatus)
 })
