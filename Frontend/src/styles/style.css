@@ -19,3 +19,7 @@
     align-items: normal;
   }
 }
+
+#tarjetaCuenta.opacity-children * {
+  opacity: 0.4;
+}

@@ -21,12 +21,12 @@
         <article id='tarjetaCuenta' class='relative bg-root-bg-card w-96 lg:w-[45%] xl:min-w-[475px] max-w-1/2 h-72 rounded-2xl p-5'>
           <h4 class='font-semibold text-xl'>Saldo en cuenta</h4>
           <div class='flex flex-row gap-5'>
-            <p class='text-5xl' id='saldo'>$ 450.000</p>
-            <button id='saldo-activo'>
-              <img src="/ver-activo.svg" alt="icono ver" />
+            <p class='text-5xl' id='saldo' data-visible='true'>$ 450.000</p>
+            <button id='saldo-activo' class='hidden'>
+              <img  src="/ver-activo.svg" alt="icono ver" />
             </button>
             <button id='saldo-oculto'>
-              <img class='hidden' src="/ver-desactivado.svg" alt="icono ver" />
+              <img src="/ver-desactivado.svg" alt="icono ver" />
             </button>
           </div>
           <a href="/movimientos/?cuenta=123" target='_self' id='lnk_Movimientos' class='absolute bottom-5 right-5 text-lg'>Ver resumen</a>
