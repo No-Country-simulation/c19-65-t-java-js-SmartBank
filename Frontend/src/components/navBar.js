@@ -19,7 +19,7 @@ const menuOptions = {
 
 let renderMenu = ''
 menuOptions['client'].forEach(({label, url}) => {
-  renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white aria-current="page">${label}</a>`
+  renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
 })
 
 //
@@ -33,11 +33,11 @@ document.querySelector('#navBar').innerHTML = `
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Abrir menu</span>
               <!-- Icon when menu is closed. 🍔 -->
-              <svg class="block h-6 w-6" id='menu-open' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <svg class="block h-6 w-6" id='menu-open' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
               <!-- Icon when menu is open. ❌ -->
-              <svg class="hidden h-6 w-6" id='menu-close' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <svg class="hidden h-6 w-6" id='menu-close' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -63,17 +63,17 @@ document.querySelector('#navBar').innerHTML = `
                 </button>
               </div>
       
-              <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" id="user-menu" data-status="false" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-root-navBar py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" id="user-menu" data-status="false" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> -->
-                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> -->
-                <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-sign-out">Sign out</a>
+                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> -->
+                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" tabindex="-1" id="user-menu-item-1">Settings</a> -->
+                <a href="/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" tabindex="-1" id="user-menu-sign-out">Sign out</a>
               </div>
             </div>
           </div>
         </div>
         <!-- Dropdown menu, show/hide based on menu state. -->
-        <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0 z-10" id="dropdown-menu">
+        <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0 z-10 rounded-br-lg" id="dropdown-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             ${renderMenu}
             <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
