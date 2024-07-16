@@ -4,12 +4,12 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
-  color-scheme: light dark;
+
+  /* color-scheme: light dark; */
 
   --background-color: #efefef;
   --text-color: #000;
-  --header-bg: #011F4F;
+  --header-bg: #011f4f;
   --navBar: #023484;
 }
 

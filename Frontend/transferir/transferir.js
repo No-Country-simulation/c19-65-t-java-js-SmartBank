@@ -1,3 +1,6 @@
+import "@components/navBar.js";
+import "@styles/style.css";
+
 document
   .getElementById("bankForm")
   .addEventListener("submit", function (event) {
