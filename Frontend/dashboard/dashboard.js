@@ -1,4 +1,5 @@
 import '@components/navBar.js'
+import '@components/header.js'
 import '@styles/style.css'
 
 // Elementos DOM
@@ -8,11 +9,13 @@ const $tarjetaCuenta = document.querySelector('#tarjetaCuenta')
 const $saldo = document.querySelector('#saldo')
 const $saldoActivoIcn = document.querySelector('#saldo-activo')
 const $saldoOcultoIcn = document.querySelector('#saldo-oculto')
-
+const $noCountMssg = document.querySelector('#noCountMssg')
 const $btn_Movimientos = document.querySelector('#lnk_Movimientos')
 
 const $invGraph = document.querySelector('#invGraph')
 const $noInvMssg = document.querySelector('#noInvMssg')
+
+const $transfCard = document.querySelector('#transferir')
 
 // Info del backend
 const accountsDetails = {
@@ -23,24 +26,27 @@ const invList = []
 
 // todo - Funcionalidad Inversiones
 
-// Funcion, actualización listado de cuentas
 const accountsKeys = Object.keys(accountsDetails)
-if(accountsKeys.length !== 0) {
+if(accountsKeys.length === 0) {
+  // @fail - Opciones si el usuario no tiene ninguna cuenta
+  $accountsList.innerHTML = `<option value="">No tienes cuentas asociadas</option>`
+  $accountsList.setAttribute('disabled', 'true')
+  //Account Card
+  // $tarjetaCuenta.classList.add('pointer-events-none')
+  $tarjetaCuenta.classList.add('opacity-children-40')
+  $saldo.innerHTML = `$****`
+  $btn_Movimientos.classList.add('pointer-events-none')
+  $transfCard.classList.add('inactive-card')
+  $noCountMssg.classList.remove('hidden')
+} else {
+  // @ok - Opciones si el usuario tiene cuentas
+  // Actualización listado de cuentas
   const htmlAccountOpts = accountsKeys.map(account => {
     const { tipoCuenta } = accountsDetails[account]
     return `<option value="${account}">${account} - ${tipoCuenta}</option>`
   })
   $accountsList.innerHTML = htmlAccountOpts
   updateAccountCard(accountsKeys[0])
-} else {
-  //Accounts List
-  $accountsList.innerHTML = `<option value="">No tienes cuentas asociadas</option>`
-  $accountsList.setAttribute('disabled', 'true')
-  //Account Card
-  $tarjetaCuenta.style.pointerEvents = 'none'
-  $tarjetaCuenta.classList.add('opacity-children')
-  $saldo.innerHTML = `$****`
-  $btn_Movimientos.style.pointerEvents = 'none'
 }
 
 //Funcion, actualizar tarjeta Cuenta
@@ -62,12 +68,12 @@ $tarjetaCuenta.addEventListener('click', (e) => {
   if(clickedBtn){
     const isVisibleBalance = $saldo.dataset.visible === 'true'
     if(isVisibleBalance) {
-      $saldoOcultoIcn.style.display = 'none'
-      $saldoActivoIcn.style.display = 'block'
+      $saldoOcultoIcn.classList.add('hidden')
+      $saldoActivoIcn.classList.remove('hidden')
       $saldo.innerHTML = `$****`
     } else {
-      $saldoOcultoIcn.style.display = 'block'
-      $saldoActivoIcn.style.display = 'none'
+      $saldoOcultoIcn.classList.remove('hidden')
+      $saldoActivoIcn.classList.add('hidden')
       const ActiveAccount = $accountsList.value
       const saldoCuenta = accountsDetails[ActiveAccount].saldo.toLocaleString('es-ES')
       $saldo.innerHTML = `$${saldoCuenta}`

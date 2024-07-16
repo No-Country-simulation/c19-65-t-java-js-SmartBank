@@ -20,6 +20,12 @@
   }
 }
 
-#tarjetaCuenta.opacity-children * {
-  opacity: 0.4;
+@layer components {
+  .opacity-children-40 > *:not(#noCountMssg) {
+    @apply opacity-40
+  }
+
+  .inactive-card {
+    @apply opacity-50 pointer-events-none
+  }
 }

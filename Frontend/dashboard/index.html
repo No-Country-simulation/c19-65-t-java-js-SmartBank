@@ -8,7 +8,7 @@
   </head>
   <body class='bg-root-background'>
 
-    <header class='w-full bg-root-header text-white'>Header</header>
+    <header id='header'></header>
 
     <nav id='navBar'></nav>
 
@@ -30,6 +30,13 @@
             </button>
           </div>
           <a href="/movimientos/?cuenta=123" target='_self' id='lnk_Movimientos' class='absolute bottom-5 right-5 text-lg'>Ver resumen</a>
+          <div class='hidden absolute w-1/2 h-auto top-1/3 left-1/4 text-center' id='noCountMssg'>
+            <p class='text-xl'>
+              No tienes cuentas asociadas. Para crear una 
+              <br/> 
+              <a class='text-blue-900 font-bold' href="/crearCuenta/">haz click aquí</a>
+            </p>
+          </div>
         </article>
         <article class='bg-root-bg-card w-96 lg:w-[45%] xl:min-w-[475px] h-72 rounded-2xl p-5 relative flex justify-center '>
           <h4 class='font-semibold text-xl absolute top-[-30px] left-5'>Mis Inversiones</h4>
@@ -48,11 +55,11 @@
     <section class='mx-32 my-4 h-auto text-root-text'>
       <h3 class='font-semibold text-2xl mb-4'>Accesos rápidos</h3>
       <div class='flex flex-row flex-wrap gap-7 justify-evenly xl:justify-between h-auto'>
-        <a href='#QR' id='QR' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#QR' id='QR' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/qr-activo.svg" alt="Logo: Código QR" />
           <p class='text-xl'>Generar QR</p>
         </a>
-        <a href='#prestamos' id='prestamos' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#prestamos' id='prestamos' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/cash-activo.svg" alt="Logo: Prestamos" />
           <p class='text-xl'>Préstamos</p>
         </a>
@@ -60,7 +67,7 @@
           <img src="/transf-activo.svg" alt="Logo: Transferencias" />
           <p class='text-xl'>Transferencias</p>
         </a>
-        <a href='#promociones' id='promociones' class='opacity-50 pointer-events-none bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#promociones' id='promociones' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <img src="/percent-activo.svg" alt="Logo: Promociones" />
           <p class='text-xl'>Promociones</p>
         </a>
