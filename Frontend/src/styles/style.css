@@ -12,6 +12,7 @@
   --text-color: #000;
   --header-bg: #011F4F;
   --navBar: #023484;
+  --popup: #033e9e;
 }
 
 @layer utilities {
