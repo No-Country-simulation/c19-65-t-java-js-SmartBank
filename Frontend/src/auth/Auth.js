@@ -17,7 +17,10 @@ function resetTimer() {
 function updateConsole () {
   timeRemaining -= 1000
   // console.log(`Tiempo restante: ${timeRemaining / 1000} segundos`)
-  if ((timeRemaining/1000) === 890) console.log('%cAlerta Inactividad!!!', 'color: red; font-size: 30px') //TODO - Cambiar Alert por PopUp
+  if ((timeRemaining/1000) === 5 * 60 * 1000){
+    document.querySelector('#modal').style.top = '0'
+    document.querySelector('[for="cerrar-modal"]').classList.remove('hidden')
+  }
 }
 
 function onTimeout() {

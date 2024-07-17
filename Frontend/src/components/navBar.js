@@ -81,7 +81,16 @@ const menuOptions = {
               <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
             </div>
           </div>
-        </div>`
+        </div>
+        
+        <section>
+          <input id="cerrar-modal" type="radio" name="modal" class="hidden"/>
+          <label for="cerrar-modal" class="hidden absolute bg-rose-500 w-6 h-6 rounded-full transition-all duration-500 z-30 text-white font-bold cursor-pointer text-center top-4 right-4">X</label>
+          <div id="modal" class='bg-black opacity-90 text-white fixed top-[-100vh] left-0 h-screen w-screen z-20 transition-all duration-500 flex items-center justify-center'>
+            <p class="text-3xl">Inactividad</p>
+          </div>
+        </section>
+        `
 
   const $logOutBtn = document.querySelector('#user-menu-sign-out')
 
@@ -131,6 +140,11 @@ const menuOptions = {
 
   $logOutBtn.addEventListener('click', () => {
     logOut()
+  })
+
+  document.querySelector('[for="cerrar-modal"]').addEventListener('click', () => {
+    document.querySelector('#modal').style.top = '-100vh'
+    document.querySelector('[for="cerrar-modal"]').classList.add('hidden')
   })
 
 })();
