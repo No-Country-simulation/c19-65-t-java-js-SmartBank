@@ -7,13 +7,25 @@
   
   color-scheme: light dark;
 
-  --background-color: #efefef;
+  --background-color: #fff;
+  --background-cards: #efefef;
   --text-color: #000;
   --header-bg: #011F4F;
   --navBar: #023484;
 }
 
-html {
-  /* background: var(--background-color); */
-  /* color: var(--text-color); */
+@layer utilities {
+  .items-normal {
+    align-items: normal;
+  }
+}
+
+@layer components {
+  .opacity-children-40 > *:not(#noCountMssg) {
+    @apply opacity-40
+  }
+
+  .inactive-card {
+    @apply opacity-50 pointer-events-none
+  }
 }

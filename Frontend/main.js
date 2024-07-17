@@ -1,6 +1,10 @@
 import '@styles/style.css'
+<<<<<<< HEAD
 import { logIn } from '@auth/Auth'
 
+=======
+// import { setupCounter } from './counter.js'
+>>>>>>> Dashboard
 
 document.querySelector('#app').innerHTML = `
   <div class="text-red-900">
