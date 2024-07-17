@@ -1,11 +1,40 @@
 import { encryptString } from '@helpers/crypt'
 
+const timeoutDuration = 15 * 60 * 1000 // 15 min
+let timeoutId
+let intervalId
+let timeRemaining = timeoutDuration
+
+function resetTimer() {
+  clearTimeout(timeoutId)
+  clearInterval(intervalId)
+  timeRemaining = timeoutDuration
+  timeoutId = setTimeout(onTimeout, timeoutDuration)
+  intervalId = setInterval(updateConsole, 1000)
+  sessionStorage.setItem('tm', (new Date).getTime())
+}
+
+function updateConsole () {
+  timeRemaining -= 1000
+  // console.log(`Tiempo restante: ${timeRemaining / 1000} segundos`)
+  if ((timeRemaining/1000) === 890) console.log('%cAlerta Inactividad!!!', 'color: red; font-size: 30px') //TODO - Cambiar Alert por PopUp
+}
+
+function onTimeout() {
+  clearInterval(intervalId)
+  logOut()
+}
+
+function Inactivity () {
+  document.addEventListener('click', resetTimer)
+}
+
 export function checkLogin() {
   document.addEventListener('DOMContentLoaded', () => {
     console.log('Load Page')
     // Tiempo inactivo
     const initialTime = sessionStorage.getItem('tm')
-    const InactTime =  15 * 60 * 1000; // 15 min
+    const InactTime =  timeoutDuration
     const now = (new Date).getTime()
     const isActiveSession = initialTime ? (now - initialTime) <= InactTime : false
     // Check login
@@ -14,9 +43,11 @@ export function checkLogin() {
       // @fail - Credenciales invalidas
       console.log('redir to /')
       setTimeout(() => {
-        window.location.href = '/'
-      }, 500)
-    } 
+        logOut()
+      }, 5000)
+    }
+    resetTimer()
+    Inactivity()
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
     // }
@@ -74,9 +105,5 @@ export function logOut() {
   sessionStorage.removeItem('UN')
   sessionStorage.removeItem('TU')
   window.location.href = '/'
-}
-
-export function Inactivity () {
-  //TODO - Logica Inactividad
 }
 
