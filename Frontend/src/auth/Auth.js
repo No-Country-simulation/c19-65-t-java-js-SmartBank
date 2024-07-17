@@ -17,10 +17,15 @@ function resetTimer() {
 function updateConsole () {
   timeRemaining -= 1000
   // console.log(`Tiempo restante: ${timeRemaining / 1000} segundos`)
-  if ((timeRemaining/1000) === 5 * 60 * 1000){
-    document.querySelector('#modal').style.top = '0'
-    document.querySelector('[for="cerrar-modal"]').classList.remove('hidden')
+  if ((timeRemaining/1000) ===  60 ){
+    displayModal('Tu sesión se cerrará en 1 minuto por inactividad.')
   }
+}
+
+function displayModal(message) {
+  document.querySelector('#modal').style.top = '0'
+  document.querySelector('[for="cerrar-modal"]').classList.remove('hidden')
+  document.querySelector('#modalmsg').textContent = message
 }
 
 function onTimeout() {
@@ -47,14 +52,13 @@ export function checkLogin() {
       console.log('redir to /')
       setTimeout(() => {
         logOut()
-      }, 5000)
+      }, 500)
     }
     resetTimer()
     Inactivity()
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
     // }
-    // console.log(import.meta.env)
   })
 }
 
@@ -97,7 +101,7 @@ export async function logIn() {
       sessionStorage.setItem('TU', `${key}`)
       setTimeout(() => {
         window.location.href = '/dashboard/'
-      }, 2000)
+      }, 200)
     })
 }
 
