@@ -1,5 +1,5 @@
-// import './style.css'
-import { setupCounter } from './counter.js'
+import '@styles/style.css'
+// import { setupCounter } from './counter.js'
 
 document.querySelector('#app').innerHTML = `
   <div class="text-red-900">
