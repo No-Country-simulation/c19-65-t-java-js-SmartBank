@@ -1,6 +1,9 @@
+import { checkLogin } from '@auth/Auth'
 import '@components/navBar.js'
 import '@components/header.js'
 import '@styles/style.css'
+
+checkLogin()
 
 // Elementos DOM
 const $accountsList = document.querySelector('#accountsList')
