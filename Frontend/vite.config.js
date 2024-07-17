@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+
 export default defineConfig({
   base: '',
   build: {
@@ -17,7 +18,9 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, '/'),
       '@styles': resolve(__dirname, 'src/styles'),
-      '@components': resolve(__dirname, 'src/components')
+      '@components': resolve(__dirname, 'src/components'),
+      '@auth': resolve(__dirname, 'src/auth'),
+      '@helpers': resolve(__dirname, 'src/helpers')
     }
   },
   server: {
