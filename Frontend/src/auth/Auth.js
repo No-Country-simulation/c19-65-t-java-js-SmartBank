@@ -22,7 +22,7 @@ function updateConsole () {
   }
 }
 
-function displayModal(message) {
+export function displayModal(message) {
   document.querySelector('#modal').style.top = '0'
   document.querySelector('[for="cerrar-modal"]').classList.remove('hidden')
   document.querySelector('#modalmsg').textContent = message
@@ -54,11 +54,11 @@ export function checkLogin() {
         logOut()
       }, 500)
     }
-    resetTimer()
-    Inactivity()
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
     // }
+    resetTimer()
+    Inactivity()
   })
 }
 
