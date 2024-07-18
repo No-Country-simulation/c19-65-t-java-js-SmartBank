@@ -15,10 +15,10 @@
         
         <div class="w-1/2 p-8 m-10">
           <h2 class="text-2xl text-center font-semibold mb-4">Bienvenido a <br> <span class="text-blue-600">SmartBank</span></h2>
-          <form class="space-y-4">
-            <input type="text" placeholder="Nombre de usuario" class="w-full p-3 border ">
+          <form id="login" class="space-y-4">
+            <input type="text" placeholder="Nombre de usuario" name='nombre' class="w-full p-3 border ">
             <div class="relative">
-              <input type="password" id="passwordInput" placeholder="Contraseña" class="w-full p-3 border border-zinc-300 rounded">
+              <input type="password" id="passwordInput" name='contraseña' placeholder="Contraseña" class="w-full p-3 border border-zinc-300 rounded">
               <!-- Ícono para mostrar la contraseña -->
               <img src="/show.svg" id="showIcon" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer ">
               <!-- Ícono para ocultar la contraseña (inicialmente oculto) -->
@@ -47,7 +47,6 @@
             </div>
             <div class="text-center">
               <img src="/1mUsuarios.svg" alt="" />
-                
             </div>
           </div>
         </div>

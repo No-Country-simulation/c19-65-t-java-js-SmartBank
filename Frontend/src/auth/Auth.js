@@ -52,7 +52,7 @@ export function checkLogin() {
       console.log('redir to /')
       setTimeout(() => {
         logOut()
-      }, 500)
+      }, 0)
     }
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
@@ -73,8 +73,10 @@ export async function logIn(formData) {
       body:  JSON.stringify(formData)
     });
     
-    if (response.status === 500) throw new Error('Error 500')
-    if (response.status === 401) throw new Error('Credenciales invalidas')
+    if (response.status !== 200) {
+      const { error } = await response.json()
+      throw new Error(`${response.status} - ${error}`)
+    }
 
     if (response.status === 200) {
       // @ok - Logica si la respuesta del servidor fue positiva
@@ -87,11 +89,12 @@ export async function logIn(formData) {
           sessionStorage.setItem('TU', `${key}`)
           setTimeout(() => {
             window.location.href = '/dashboard/'
-          }, 200)
+          }, 0)
         })
+      return {response: true}
     }
   } catch (e) {
-    console.error(e.message)
+    return {response: false, message: e.message}
   }
 }
 
