@@ -22,7 +22,8 @@ const menuOptions = {
 //
 (async () => {
   const userRole = await decryptString(sessionStorage.getItem('TU'))
-
+  //TODO - Si falla desloguear
+  
   let renderMenu = ''
   menuOptions[userRole].forEach(({label, url}) => {
     renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`

@@ -9,7 +9,7 @@ document.querySelector('#app').innerHTML = `
 `
 
 document.querySelector('#login').addEventListener('click', () => {
-  logIn({ name: 'Admin', password: 'Admin123' })
+  logIn({ name: 'User1', password: 'contraseña' })
 })
 
 // setupCounter(document.querySelector('#counter'))
