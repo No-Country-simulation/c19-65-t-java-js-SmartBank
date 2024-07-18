@@ -13,10 +13,16 @@ document
     const amount = document.getElementById("amount").value;
     const securityKey = document.getElementById("securityKey").value;
 
-    if (fullName && dni && bank && accountType && amount && securityKey) {
+    /* if (fullName && dni && bank && accountType && amount && securityKey) {
       alert(
-        `Nombre y Apellido: ${fullName}\nDNI o RUT: ${dni}\nBanco: ${bank}\nTipo de Cuenta: ${accountType}\nMonto: ${amount}\nClave de Seguridad: ${securityKey}`
+        `Nombre y Apellido: ${fullName}\nDNI o RUT: ${dni}\nBanco: ${bank}\nTipo de Cuenta: ${accountType}\nMonto: ${amount}`
       );
+    } else {
+      alert("Por favor, complete todos los campos requeridos.");
+    } */
+    if (fullName && dni && bank && accountType && amount && securityKey) {
+      // Mostrar ventana emergente de confirmación
+      alert("Su transferencia se ha realizado con éxito!");
     } else {
       alert("Por favor, complete todos los campos requeridos.");
     }
