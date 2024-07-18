@@ -1,33 +1,58 @@
-/* body {
+body {
   font-family: Arial, sans-serif;
   background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* height: 100vh; */
   margin: 0;
-} */
+}
 
 .form-container {
   background-color: #a1c4fd;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   text-align: center;
+  width: 672px;
+  height: 747px;
+  margin: auto;
+  margin-top: 40px;
 }
 
+.form-container h2 {
+  margin-bottom: 15px;
+  color: #000;
+}
 .form-group {
+  margin-top: 200px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.form-group-pass {
   margin-bottom: 15px;
 }
-
+#securityKey {
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  color: #000;
 }
 
-.form-group select,
+.form-group select {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .form-group input {
-  width: 100%;
+  width: 30%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -35,7 +60,8 @@
 
 .form-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 26px;
 }
 
 button {
@@ -46,13 +72,15 @@ button {
 }
 
 #cancelButton {
-  background-color: #f44336;
-  color: white;
+  background-color: #ffff;
+  color: #0345b0;
+  padding: 4px;
 }
 
 #addButton {
-  background-color: #4caf50;
+  background-color: #0345b0;
   color: white;
+  padding: 4px;
 }
 
 button:disabled {
@@ -77,4 +105,8 @@ button:disabled {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }

@@ -9,19 +9,17 @@
   </head>
   <body>
     <nav id="navBar"></nav>
-    <h1 class="text-blue-900 uppercase">Crear Cuenta Bancaria</h1>
     <div class="form-container">
       <h2>Agregar cuenta bancaria</h2>
       <div class="form-group">
-        <label for="accountType">Tipo de cuenta</label>
+        <label for="accountType" class="hidden">Tipo de cuenta</label>
         <select id="accountType">
           <option value="">Tipo de cuenta</option>
           <option value="checking">Cuenta Corriente</option>
           <option value="savings">Cuenta de Ahorro</option>
-          <option value="savings">Cuenta Vista</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group-pass">
         <label for="securityKey">Ingrese su clave de seguridad</label>
         <input type="password" id="securityKey" placeholder="Clave" />
       </div>
