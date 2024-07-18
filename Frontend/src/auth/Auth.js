@@ -52,7 +52,7 @@ export function checkLogin() {
       console.log('redir to /')
       setTimeout(() => {
         logOut()
-      }, 0)
+      }, 5000)
     }
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
@@ -87,7 +87,7 @@ export async function logIn(formData) {
       }
     } else {
       // ? Sección para probar sin backend
-      const status = 401 // 200 | 401
+      const status = 200 // 200 | 401
       if (status !== 200) {
         // @fail - Acceso denegado sin backend
         throw new Error(`Fallo sin backend`)
@@ -111,7 +111,7 @@ async function setLoginValues (userName, tipoUsuario, token) {
       sessionStorage.setItem('TU', `${key}`)
       setTimeout(() => {
         window.location.href = '/dashboard/'
-      }, 0)
+      }, 5000)
     })
   return {response: true}
 }
