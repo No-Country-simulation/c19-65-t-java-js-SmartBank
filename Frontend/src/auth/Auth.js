@@ -62,47 +62,37 @@ export function checkLogin() {
   })
 }
 
-export async function logIn() { 
+export async function logIn(formData) { 
   console.log('logIn')
-  
-  // TODO - Fetch formulario
-  /*e.preventDefault();
-  const { email, name } =  e.target.elements
-  const formData = {
-    email: email.value, 
-    name: name.value
-  }
   try {
-    const response = await fetch(`${import.meta.env.PUBLIC_API}/login`, {
+    const response = await fetch(`${import.meta.env.VITE_PUBLIC_API}/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body:  JSON.stringify(formData)
     });
+    
     if (response.status === 500) throw new Error('Error 500')
-    const data = await response.json()
+    if (response.status === 401) throw new Error('Credenciales invalidas')
+
     if (response.status === 200) {
-      window.location.href = '/dashboard/'
+      // @ok - Logica si la respuesta del servidor fue positiva
+      const {userName, tipoUsuario, token} = await response.json()
+      sessionStorage.setItem('Auth', token)
+      encryptString(tipoUsuario)
+        .then( key => {
+          sessionStorage.setItem('tm', (new Date).getTime())
+          sessionStorage.setItem('UN',`${userName}`)
+          sessionStorage.setItem('TU', `${key}`)
+          setTimeout(() => {
+            window.location.href = '/dashboard/'
+          }, 200)
+        })
     }
   } catch (e) {
-  }*/
-  // @ok - Logica si la respuesta del servidor fue positiva
-  const {userName, tipoUsuario} = {
-    userName: 'Pepito',
-    tipoUsuario: 'Cliente'
+    console.error(e.message)
   }
-  const userToken = crypto.randomUUID()
-  sessionStorage.setItem('Auth', userToken)
-  encryptString(tipoUsuario)
-    .then( key => {
-      sessionStorage.setItem('tm', (new Date).getTime())
-      sessionStorage.setItem('UN',`${userName}`)
-      sessionStorage.setItem('TU', `${key}`)
-      setTimeout(() => {
-        window.location.href = '/dashboard/'
-      }, 200)
-    })
 }
 
 export function logOut() {
