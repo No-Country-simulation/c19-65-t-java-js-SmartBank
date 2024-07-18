@@ -65,37 +65,55 @@ export function checkLogin() {
 export async function logIn(formData) { 
   console.log('logIn')
   try {
-    const response = await fetch(`${import.meta.env.VITE_PUBLIC_API}/login`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:  JSON.stringify(formData)
-    });
-    
-    if (response.status !== 200) {
-      const { error } = await response.json()
-      throw new Error(`${response.status} - ${error}`)
-    }
-
-    if (response.status === 200) {
-      // @ok - Logica si la respuesta del servidor fue positiva
-      const {userName, tipoUsuario, token} = await response.json()
-      sessionStorage.setItem('Auth', token)
-      encryptString(tipoUsuario)
-        .then( key => {
-          sessionStorage.setItem('tm', (new Date).getTime())
-          sessionStorage.setItem('UN',`${userName}`)
-          sessionStorage.setItem('TU', `${key}`)
-          setTimeout(() => {
-            window.location.href = '/dashboard/'
-          }, 0)
-        })
-      return {response: true}
+    if (import.meta.env.VITE_PUBLIC_API){
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/login`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body:  JSON.stringify(formData)
+      });
+      
+      if (resp.status !== 200) {
+        // @fail - Acceso denegado
+        const { error } = await resp.json()
+        throw new Error(`${resp.status} - ${error}`)
+      }
+  
+      if (resp.status === 200) {
+        // @ok - Acceso valido
+        const {userName, tipoUsuario, token} = await resp.json()
+        return setLoginValues (userName, tipoUsuario, token)
+      }
+    } else {
+      // ? Sección para probar sin backend
+      const status = 401 // 200 | 401
+      if (status !== 200) {
+        // @fail - Acceso denegado sin backend
+        throw new Error(`Fallo sin backend`)
+      }
+      if (status === 200) {
+        // @ok - Acceso valido sin backend
+        return setLoginValues ('userName', 'Cliente', 'token')
+      }
     }
   } catch (e) {
     return {response: false, message: e.message}
   }
+}
+
+async function setLoginValues (userName, tipoUsuario, token) {
+  sessionStorage.setItem('Auth', token)
+  encryptString(tipoUsuario)
+    .then( key => {
+      sessionStorage.setItem('tm', (new Date).getTime())
+      sessionStorage.setItem('UN',`${userName}`)
+      sessionStorage.setItem('TU', `${key}`)
+      setTimeout(() => {
+        window.location.href = '/dashboard/'
+      }, 0)
+    })
+  return {response: true}
 }
 
 export function logOut() {
