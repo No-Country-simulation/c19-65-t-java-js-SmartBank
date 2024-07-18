@@ -52,7 +52,7 @@ export function checkLogin() {
       console.log('redir to /')
       setTimeout(() => {
         logOut()
-      }, 5000)
+      }, 0)
     }
     // else if (isAdmin) {
     //   window.location.href = '/admin.html';
@@ -111,7 +111,7 @@ async function setLoginValues (userName, tipoUsuario, token) {
       sessionStorage.setItem('TU', `${key}`)
       setTimeout(() => {
         window.location.href = '/dashboard/'
-      }, 5000)
+      }, 0)
     })
   return {response: true}
 }
