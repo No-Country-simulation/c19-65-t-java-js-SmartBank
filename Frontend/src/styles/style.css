@@ -4,9 +4,7 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  /* color-scheme: light dark; */
-
+  
   --background-color: #fff;
   --background-cards: #efefef;
   --text-color: #000;
@@ -14,7 +12,18 @@
   --navBar: #023484;
 }
 
-html {
-  /* background: var(--background-color); */
-  /* color: var(--text-color); */
+@layer utilities {
+  .items-normal {
+    align-items: normal;
+  }
+}
+
+@layer components {
+  .opacity-children-40 > *:not(#noCountMssg) {
+    @apply opacity-40
+  }
+
+  .inactive-card {
+    @apply opacity-50 pointer-events-none
+  }
 }

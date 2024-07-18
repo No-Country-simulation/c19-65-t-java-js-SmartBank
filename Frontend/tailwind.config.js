@@ -13,7 +13,8 @@ export default {
         'root-bg-card': 'var(--background-cards)',
         'root-text': 'var(--text-color)',
         'root-header': 'var(--header-bg)',
-        'root-navBar': 'var(--navBar)'
+        'root-navBar': 'var(--navBar)',
+        'root-popup': 'var(--popup)'
       },
       alignItems: {
         'normal': 'normal'

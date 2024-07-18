@@ -1,5 +1,7 @@
-import { logOut } from '@auth/Auth'
+import { logOut, checkLogin } from '@auth/Auth'
 import { decryptString } from '@helpers/crypt'
+
+checkLogin()
 
 // Datos a obtiener del backend o localstorage
 const userInfo = {
@@ -14,13 +16,14 @@ const menuOptions = {
     {label: 'Movimientos', url: '/movimientos/'},
     {label: 'Transferir', url: '/transferir/'}
   ],
-  admin: []
+  Admin: []
 };
 
 //
 (async () => {
   const userRole = await decryptString(sessionStorage.getItem('TU'))
-
+  //TODO - Si falla desloguear
+  
   let renderMenu = ''
   menuOptions[userRole].forEach(({label, url}) => {
     renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
@@ -78,10 +81,20 @@ const menuOptions = {
           <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0 z-10 rounded-br-lg" id="dropdown-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
               ${renderMenu}
-              <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
             </div>
           </div>
-        </div>`
+        </div>
+        
+        <section>
+          <input id="cerrar-modal" type="radio" name="modal" class="hidden"/>
+          <label for="cerrar-modal" class="hidden absolute bg-rose-500 w-6 h-6 rounded-full transition-all duration-500 z-30 text-white font-bold cursor-pointer text-center top-4 right-4">X</label>
+          <div id="modal" class='bg-black/75 text-white fixed top-[-100vh] left-0 h-screen w-screen z-20 transition-all duration-500 flex items-center justify-center'>
+            <div class="bg-root-popup w-3/5 h-96 max-w-screen-sm rounded-3xl flex items-center border border-b-slate-400 p-5">
+              <p id="modalmsg" class="w-full text-3xl font-semibold text-center"></p>
+            </div>
+          </div>
+        </section>
+        `
 
   const $logOutBtn = document.querySelector('#user-menu-sign-out')
 
@@ -131,6 +144,13 @@ const menuOptions = {
 
   $logOutBtn.addEventListener('click', () => {
     logOut()
+  })
+
+  document.querySelector('[for="cerrar-modal"]').addEventListener('click', (e) => {
+    // if(document.location.pathname !== '/dashboard/')
+    //   window.location.href = '/dashboard/'
+    document.querySelector('#modal').style.top = '-100vh'
+    document.querySelector('[for="cerrar-modal"]').classList.add('hidden')
   })
 
 })();
