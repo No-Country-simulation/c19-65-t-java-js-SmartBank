@@ -1,5 +1,6 @@
 import { logIn } from '@auth/Auth'
 import '@styles/style.css'
+import '@components/header.js'
 
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById('passwordInput'); // Cambio aquí
