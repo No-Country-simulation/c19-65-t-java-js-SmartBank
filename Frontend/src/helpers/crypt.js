@@ -51,18 +51,22 @@ export async function encryptString(text) {
 
 // Función para descifrar un string
 export async function decryptString(encrypted) {
-  const { iv, data } = JSON.parse(encrypted)
-  const ivArray = Uint8Array.from(atob(iv), c => c.charCodeAt(0))
-  const encryptedDataArray = Uint8Array.from(atob(data), c => c.charCodeAt(0))
-  const key = await deriveKey(import.meta.env.VITE_CRYPTO_KEY)
-  const decryptedData = await crypto.subtle.decrypt(
-    {
-      name: 'AES-GCM',
-      iv: ivArray
-    },
-    key,
-    encryptedDataArray
-  )
-  const decoder = new TextDecoder();
-  return decoder.decode(decryptedData)
+  try {
+    const { iv, data } = JSON.parse(encrypted)
+    const ivArray = Uint8Array.from(atob(iv), c => c.charCodeAt(0))
+    const encryptedDataArray = Uint8Array.from(atob(data), c => c.charCodeAt(0))
+    const key = await deriveKey(import.meta.env.VITE_CRYPTO_KEY)
+    const decryptedData = await crypto.subtle.decrypt(
+      {
+        name: 'AES-GCM',
+        iv: ivArray
+      },
+      key,
+      encryptedDataArray
+    )
+    const decoder = new TextDecoder();
+    return decoder.decode(decryptedData)
+  } catch (e) {
+    return false
+  }
 }
