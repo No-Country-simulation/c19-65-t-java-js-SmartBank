@@ -18,12 +18,31 @@ function togglePasswordVisibility() {
     }
 }
 
-// Exponer la función al ámbito global
+
 window.togglePasswordVisibility = togglePasswordVisibility;
 
+//* 
+// Obtener los elementos por ID
+const registrarseBtn = document.getElementById('registrarseBtn'); // Asegúrate de que este es el ID correcto para el botón "Registrarse"
+const ingresarBtn = document.getElementById('ingresarBtn'); // Asegúrate de que este es el ID correcto para el botón "Ingresar"
+const overlay1 = document.getElementById('overlay-1');
+const overlay2 = document.getElementById('overlay-2');
 
+// Función para mostrar overlay-2 y ocultar overlay-1
+function mostrarOverlay2() {
+  overlay1.style.display = 'none';
+  overlay2.style.display = 'block';
+}
 
-  // logIn()
+// Función para mostrar overlay-1 y ocultar overlay-2
+function mostrarOverlay1() {
+  overlay1.style.display = 'block';
+  overlay2.style.display = 'none';
+}
+
+// Agregar manejadores de eventos
+registrarseBtn.addEventListener('click', mostrarOverlay2);
+ingresarBtn.addEventListener('click', mostrarOverlay1);
 
 
 
