@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,27 +8,36 @@
   </head>
 
   <body>
-    <header id='header'></header>    
-    
-    <div class="min-h-screen flex items-center m-4 relative justify-center top-0 ">
-      <div class="bg-white rounded-lg flex flex-col md:flex-row max-w-6xl w-3/4 justify-center align-middle">
-        
-        <div id="overlay-1" class="w-full md:w-1/2 p-2 m-4 justify-center items-center ">
-          <h2 class="text-2xl text-center font-semibold mb-4">Bienvenido a <br> <span class="text-blue-600">SmartBank</span></h2>
+    <header id="header"></header>
+
+    <div class="min-h-screen flex items-center m-2 relative justify-center top-0">
+      <div class="bg-white rounded-lg flex flex-col md:flex-row max-w-6xl w-3/4 m-1 justify-center align-middle">
+        <div id="overlay-1" class="w-full md:w-1/2 p-2 m-2 justify-center items-center">
+          <h2 class="text-2xl text-center font-semibold mb-2">
+            Bienvenido a <br />
+            <span class="text-blue-600">SmartBank</span>
+          </h2>
           <form id="login" class="space-y-4">
             <input required type="text" placeholder="Nombre de usuario" name='nombre' class="w-full p-3 border ">
             <div class="relative">
               <input required type="password" id="passwordInput" name='contraseña' placeholder="Contraseña" class="w-full p-3 border border-zinc-300 rounded">
               <!-- Ícono para mostrar la contraseña -->
-              <img src="/show.svg" id="showIcon" onclick="togglePasswordVisibility()" class="absolute inset-y-1 right-0 p-2 h-10  cursor-pointer ">
+              <img src="/show.svg" id="showIcon" onclick="togglePasswordVisibility()" class="absolute inset-y-1 right-0 p-2 h-10 cursor-pointer"/>
               <!-- Ícono para ocultar la contraseña (inicialmente oculto) -->
-              <img src="/hide.svg" id="hideIcon" onclick="togglePasswordVisibility()" class="absolute inset-y-1 right-0 p-2 h-10 cursor-pointer hidden ">
+              <img src="/hide.svg" id="hideIcon" onclick="togglePasswordVisibility()" class="absolute inset-y-1 right-0 p-2 h-10 cursor-pointer hidden" />
             </div>
             <div class="flex-col justify-between text-sm">
-              <p class="text-center">¿No tiene cuenta? <a href="#" id="registrarseBtn" class="text-blue-600">Registrarse</a></p> 
-              <p class="text-center "><a href="#" class="items-normal hover:text-blue-600">He perdido mi contraseña</a></p>
+              <p class="text-center">
+                ¿No tiene cuenta?
+                <a href="#" id="registrarseBtn" class="text-blue-600">Registrarse</a>
+              </p>
+              <p class="text-center">
+                <a href="#" class="items-normal hover:text-blue-600">He perdido mi contraseña</a>
+              </p>
             </div>
-            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700">Ingresar</button>
+            <button type="submit" class="w-full rounded bg-blue-300 text-white p-3" disabled >
+              Ingresar
+            </button>
           </form>
         </div>
         <!--! Formulario de registro -->
