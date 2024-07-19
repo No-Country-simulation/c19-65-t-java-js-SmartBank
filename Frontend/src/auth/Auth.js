@@ -1,4 +1,6 @@
 import { encryptString } from '@helpers/crypt'
+import { setStorageItem, getStorageItem } from "@services/storageService"
+import { logOut } from "@services/userService"
 
 const timeoutDuration = 15 * 60 * 1000 // 15 min
 let timeoutId
@@ -11,7 +13,7 @@ function resetTimer() {
   timeRemaining = timeoutDuration
   timeoutId = setTimeout(onTimeout, timeoutDuration)
   intervalId = setInterval(updateConsole, 1000)
-  sessionStorage.setItem('tm', (new Date).getTime())
+  setStorageItem('tm', (new Date).getTime())
 }
 
 function updateConsole () {
@@ -41,12 +43,12 @@ export function checkLogin() {
   document.addEventListener('DOMContentLoaded', () => {
     console.log('Load Page')
     // Tiempo inactivo
-    const initialTime = sessionStorage.getItem('tm')
+    const initialTime = getStorageItem('tm')
     const InactTime =  timeoutDuration
     const now = (new Date).getTime()
     const isActiveSession = initialTime ? (now - initialTime) <= InactTime : false
     // Check login
-    const AuthToken = sessionStorage.getItem('Auth') != null
+    const AuthToken = getStorageItem('Auth') != null
     if (!isActiveSession || !AuthToken) {
       // @fail - Credenciales invalidas
       console.log('redir to /')
@@ -62,66 +64,16 @@ export function checkLogin() {
   })
 }
 
-export async function logIn(formData) { 
-  console.log('logIn')
-  try {
-    if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/login`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body:  JSON.stringify(formData)
-      });
-      
-      if (resp.status !== 200) {
-        // @fail - Acceso denegado
-        const { error } = await resp.json()
-        throw new Error(`${resp.status} - ${error}`)
-      }
-  
-      if (resp.status === 200) {
-        // @ok - Acceso valido
-        const {userName, tipoUsuario, token} = await resp.json()
-        return setLoginValues (userName, tipoUsuario, token)
-      }
-    } else {
-      // ? Sección para probar sin backend
-      const status = 200 // 200 | 401
-      if (status !== 200) {
-        // @fail - Acceso denegado sin backend
-        throw new Error(`Fallo sin backend`)
-      }
-      if (status === 200) {
-        // @ok - Acceso valido sin backend
-        return setLoginValues ('userName', 'Cliente', 'token')
-      }
-    }
-  } catch (e) {
-    return {response: false, message: e.message}
-  }
-}
-
-async function setLoginValues (userName, tipoUsuario, token) {
-  sessionStorage.setItem('Auth', token)
+export async function setLoginValues (userName, tipoUsuario, token) {
+  setStorageItem('Auth', token)
   encryptString(tipoUsuario)
     .then( key => {
-      sessionStorage.setItem('tm', (new Date).getTime())
-      sessionStorage.setItem('UN',`${userName}`)
-      sessionStorage.setItem('TU', `${key}`)
+      setStorageItem('tm', (new Date).getTime())
+      setStorageItem('UN',`${userName}`)
+      setStorageItem('TU', `${key}`)
       setTimeout(() => {
         window.location.href = '/dashboard/'
       }, 0)
     })
   return {response: true}
 }
-
-export function logOut() {
-  console.log('logOut')
-  sessionStorage.removeItem('Auth')
-  sessionStorage.removeItem('tm')
-  sessionStorage.removeItem('UN')
-  sessionStorage.removeItem('TU')
-  window.location.href = '/'
-}
-

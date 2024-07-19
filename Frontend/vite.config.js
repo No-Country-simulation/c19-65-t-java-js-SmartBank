@@ -20,7 +20,8 @@ export default defineConfig({
       '@styles': resolve(__dirname, 'src/styles'),
       '@components': resolve(__dirname, 'src/components'),
       '@auth': resolve(__dirname, 'src/auth'),
-      '@helpers': resolve(__dirname, 'src/helpers')
+      '@helpers': resolve(__dirname, 'src/helpers'),
+      '@services': resolve(__dirname, 'src/services')
     }
   },
   server: {

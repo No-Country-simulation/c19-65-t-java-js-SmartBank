@@ -1,30 +1,9 @@
-import { logIn } from '@auth/Auth'
 import '@styles/style.css'
 import '@components/header.js'
 
-function togglePasswordVisibility() {
-    const passwordInput = document.getElementById('passwordInput'); // Cambio aquí
-    const showIcon = document.getElementById('showIcon');
-    const hideIcon = document.getElementById('hideIcon');
-    
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      showIcon.classList.add('hidden');
-      hideIcon.classList.remove('hidden');
-    } else {
-      passwordInput.type = 'password';
-      showIcon.classList.remove('hidden'); // Corrección: 'show' a 'hidden'
-      hideIcon.classList.add('hidden'); // Corrección: 'show' a 'hidden'
-    }
-}
+import { logIn, signUp } from "@services/userService"
+import { deleteAllStorage } from "@services/storageService"
 
-
-window.togglePasswordVisibility = togglePasswordVisibility;
-
-sessionStorage.removeItem('Auth')
-sessionStorage.removeItem('tm')
-sessionStorage.removeItem('UN')
-sessionStorage.removeItem('TU')
 
 document.querySelector('#login').addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -38,19 +17,39 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
 
 document.querySelector('#signup').addEventListener('submit', async (e) => {
   e.preventDefault()
+  console.log('signup')
   const { nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2} = Object.fromEntries(new FormData(e.target))
 
-  //TODO - Validación de passwords
-  console.log('signup')
   if(passw1 === passw2) {
     // TODO - Conexion con el backend
     // const resp = await signUp({ nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2})
   }
   
-  // ! Acción en caso de fallar el signup o passw1 != passw2
+  // ! Acción en caso de fallar: Usuario ya existe || passw1 != passw2
   // ! {response: false, message: 'Fallo en el registro'}
   // console.log(resp) 
 })
+
+function togglePasswordVisibility() {
+  const passwordInput = document.getElementById('passwordInput'); // Cambio aquí
+  const showIcon = document.getElementById('showIcon');
+  const hideIcon = document.getElementById('hideIcon');
+  
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    showIcon.classList.add('hidden');
+    hideIcon.classList.remove('hidden');
+  } else {
+    passwordInput.type = 'password';
+    showIcon.classList.remove('hidden'); // Corrección: 'show' a 'hidden'
+    hideIcon.classList.add('hidden'); // Corrección: 'show' a 'hidden'
+  }
+}
+
+window.togglePasswordVisibility = togglePasswordVisibility;
+
+// * Reset SessionStorage
+deleteAllStorage()
 
 //* Funciones para mostrar y ocultar los overlays
 
