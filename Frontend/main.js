@@ -21,6 +21,23 @@ function togglePasswordVisibility() {
 
 window.togglePasswordVisibility = togglePasswordVisibility;
 
+sessionStorage.removeItem('Auth')
+sessionStorage.removeItem('tm')
+sessionStorage.removeItem('UN')
+sessionStorage.removeItem('TU')
+
+document.querySelector('#login').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const { nombre: name, contraseña: password } = Object.fromEntries(new FormData(e.target))
+  //TODO - Validación de datos
+  
+  const resp = await logIn({ name, password })
+  
+  // ! Acción en caso de fallar el login
+  // ! {response: false, message: '401 - El usuario no existe'}
+  console.log(resp) 
+})
+
 //* 
 // Obtener los elementos por ID
 const registrarseBtn = document.getElementById('registrarseBtn'); // Asegúrate de que este es el ID correcto para el botón "Registrarse"
