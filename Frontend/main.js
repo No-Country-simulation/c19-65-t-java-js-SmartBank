@@ -41,7 +41,7 @@ document.querySelector('#signup').addEventListener('submit', async (e) => {
   const { nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2} = Object.fromEntries(new FormData(e.target))
 
   //TODO - Validación de passwords
-  console.log()
+  console.log('signup')
   if(passw1 === passw2) {
     // TODO - Conexion con el backend
     // const resp = await signUp({ nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2})
