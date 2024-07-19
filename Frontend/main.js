@@ -13,8 +13,8 @@ function togglePasswordVisibility() {
       hideIcon.classList.remove('hidden');
     } else {
       passwordInput.type = 'password';
-      showIcon.classList.remove('hidden'); // Corrección: 'show' a 'hidden'
-      hideIcon.classList.add('hidden'); // Corrección: 'show' a 'hidden'
+      showIcon.classList.remove('hidden'); 
+      hideIcon.classList.add('hidden'); 
     }
 }
 
@@ -62,4 +62,95 @@ registrarseBtn.addEventListener('click', mostrarOverlay2);
 ingresarBtn.addEventListener('click', mostrarOverlay1);
 
 
+//! Validar formulario de registro
+
+document.addEventListener('DOMContentLoaded', function() {
+  const submitButton = document.querySelector('button[type="submit"]');
+  const inputs = document.querySelectorAll('input');
+  const password1 = document.getElementById('passw1');
+  const password2 = document.getElementById('passw2');
+  const emailInput = document.querySelector('input[type="email"]');
+  const dniInput = document.getElementById('dni');
+  const termsCheckbox = document.getElementById('agree');
+
+  submitButton.disabled = true;
+
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
+  function validateDNI(dni) {
+    const regex = /^\d{7,8}$/;
+    return regex.test(dni);
+  }
+
+  function validatePasswords() {
+    if (password1.value === password2.value) {
+      password2.setCustomValidity('');
+      removeErrorMessage(password2);
+    } else {
+      password2.setCustomValidity('Las contraseñas no coinciden');
+      showErrorMessage(password2, 'Las contraseñas no coinciden');
+    }
+  }
+
+  function validateInput(input) {
+    const isEmail = input.type === 'email';
+    const isDNI = input === dniInput;
+    const isEmpty = !input.value.trim();
+    const isInvalidEmail = isEmail && !validateEmail(input.value);
+    const isInvalidDNI = isDNI && !validateDNI(input.value);
+
+    if (isEmpty || isInvalidEmail || isInvalidDNI) {
+      const errorMessage = isEmpty ? 'Esta información es necesaria' : isInvalidEmail ? 'Ingrese un email válido' : 'Ingrese un DNI válido';
+      showErrorMessage(input, errorMessage);
+      return false;
+    } else {
+      removeErrorMessage(input);
+      return true;
+    }
+  }
+
+  function validateForm() {
+    const isValid = Array.from(inputs).every(validateInput);
+    submitButton.disabled = !isValid;
+  }
+
+  function showErrorMessage(input, message) {
+    let error = input.nextElementSibling;
+    if (!error || !error.classList.contains('error-message')) {
+      error = document.createElement('span');
+      error.className = 'error-message';
+      error.style.color = 'red';
+      error.textContent = message;
+      input.parentNode.insertBefore(error, input.nextSibling);
+    }
+    input.style.borderColor = 'red';
+  }
+
+  function removeErrorMessage(input) {
+    let error = input.nextElementSibling;
+    if (error && error.classList.contains('error-message')) {
+      error.parentNode.removeChild(error);
+    }
+    input.style.borderColor = '';
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('blur', () => validateInput(input));
+    input.addEventListener('input', () => validateInput(input));
+  });
+
+  password1.addEventListener('input', validatePasswords);
+  password2.addEventListener('input', validatePasswords);
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+    validateForm();
+    if (submitButton.disabled) {
+      event.preventDefault();
+    }
+  });
+});
 
