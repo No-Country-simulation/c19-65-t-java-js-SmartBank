@@ -29,8 +29,6 @@ sessionStorage.removeItem('TU')
 document.querySelector('#login').addEventListener('submit', async (e) => {
   e.preventDefault()
   const { nombre: name, contraseña: password } = Object.fromEntries(new FormData(e.target))
-  //TODO - Validación de datos
-  
   const resp = await logIn({ name, password })
   
   // ! Acción en caso de fallar el login
@@ -38,7 +36,23 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
   console.log(resp) 
 })
 
-//*!  Funciones para mostrar y ocultar los overlays
+document.querySelector('#signup').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const { nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2} = Object.fromEntries(new FormData(e.target))
+
+  //TODO - Validación de passwords
+  console.log()
+  if(passw1 === passw2) {
+    // TODO - Conexion con el backend
+    // const resp = await signUp({ nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2})
+  }
+  
+  // ! Acción en caso de fallar el signup o passw1 != passw2
+  // ! {response: false, message: 'Fallo en el registro'}
+  // console.log(resp) 
+})
+
+//* Funciones para mostrar y ocultar los overlays
 
 const registrarseBtn = document.getElementById('registrarseBtn'); 
 const ingresarBtn = document.getElementById('ingresarBtn'); 
