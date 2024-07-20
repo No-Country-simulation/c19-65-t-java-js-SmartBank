@@ -20,6 +20,9 @@ export default {
       },
       alignItems: {
         'normal': 'normal'
+      },
+      spacing: {
+        'full-32': 'calc(100vw - 16rem)'
       }
     },
   },

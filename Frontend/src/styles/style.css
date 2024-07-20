@@ -19,6 +19,7 @@
   .items-normal {
     align-items: normal;
   }
+  
 }
 
 @layer components {
