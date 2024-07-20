@@ -13,7 +13,8 @@ export default {
         'root-bg-card': 'var(--bgCards)',
         'root-bg-card2': 'var(--bgCards2)',
         'root-bg-card2Hover': 'var(--bgCards2Hover)',
-        'root-text': 'var(--text-color)',
+        'root-dark': 'var(--text-dark)',
+        'root-light': 'var(--text-light)',
         'root-header': 'var(--header-bg)',
         'root-navBar': 'var(--navBar)',
         'root-popup': 'var(--popup)'
@@ -22,7 +23,8 @@ export default {
         'normal': 'normal'
       },
       spacing: {
-        'full-32': 'calc(100vw - 16rem)'
+        'fullw-32': 'calc(100vw - 16rem)',
+        'fullh-12': 'calc(100vh - 3rem)'
       }
     },
   },
