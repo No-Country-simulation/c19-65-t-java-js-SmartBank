@@ -1,3 +1,5 @@
+## FRONTED SMARTBANK
+
 <h1 align="center"">SmartBank</h1>
 <h2 align="center"">c19-65-t-java-js</h2>
 
@@ -38,7 +40,7 @@
 ### Crear Cuenta
 - Descripción: Permite a los usuarios crear nuevas cuentas bancarias.
 
-### Movimientos <!-- TODO - Vista sin diseño en Figma -->
+### Movimientos <!-- TODO - Verificar columnas y agregar dropdown -->
 - Descripción: Muestra el historial de transacciones de la cuenta.
 
 ### Transferir (Recibir Notificación)
@@ -57,17 +59,21 @@
 ### cliente
 | Columna           | Tipo         | Descripción                   |
 |-------------------|--------------|-------------------------------|
-| idCliente         | int          |                               |
-| email             | varchar(25)  |                               |
-| dni               | int          |                               |
-| fechaNacimiento   | date         |                               |
-| nombre            | varchar(25)  |                               |
-| apellido          | varchar(25)  |                               |
-| telefono          | int          |                               |
-| domicilio         | varchar(25)  |                               |
-| pais              | varchar(25)  |                               |
-| tipoUsuario       | varchar(25)  |                               |
-| contraseña        | varchar(8)   |                               |
+| idCliente         |  int         |                               |
+| email             |  varchar(25) |                               |
+| dni               |  int         |                               |
+| fechaNacimiento   |  date        |                               |
+| nombre            |  varchar(25) |                               |
+| apellido          |  varchar(25) |                               |
+| telefono          |  int         |                               |
+| domicilio         |  varchar(25) |                               |
+| pais              |  varchar(25) |                               |
+| idUsuario         |  int         |                               |
+### Tipo de Usuario
+| Columna       | Tipo         | Descripción                   |
+|---------------|--------------|-------------------------------|
+| idTipoUsuario | int          |      Auto Incremental         |
+| tipoUsuario   | Varchar(8)   |                               |
 ### Cuenta
 | Columna       | Tipo         | Descripción                        |
 |---------------|--------------|------------------------------------|
@@ -79,14 +85,14 @@
 ### Movimiento
 | Columna                | Tipo         | Descripción                   |
 |------------------------|--------------|-------------------------------|
-| idMovimiento           |  int         |                               |
-| idCuenta               |  int         | FK(Cuentas > IDCuenta)        |
-| monto                  |  int         | (Monto transacción +/-)       |
-| saldo                  |  int         |                               |
+| idMovimiento           | int          |                               |
+| idCuenta               | int          | FK(Cuentas > IDCuenta)        |
+| monto                  | int          | (Monto transacción +/-)       |
+| saldo                  | int          |                               |
 | CtaOrigen              | varchar(25)  |                               |
 | CtaDestino             | varchar(25)  |                               |
 | Descripción Movimiento | varchar(25)  |                               |
-| Fecha Movimiento       |   date       |                               |
+| Fecha Movimiento       | date         |                               |
 ### TipoCuenta
 | Columna      | Tipo         | Descripción                 |
 |--------------|--------------|-----------------------------|

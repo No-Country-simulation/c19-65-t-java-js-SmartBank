@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="crearCuenta.css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <nav id="navBar"></nav>
+    <div class="form-container">
+      <h2>Agregar cuenta bancaria</h2>
+      <div class="form-group">
+        <label for="accountType" class="hidden">Tipo de cuenta</label>
+        <select id="accountType">
+          <option value="">Tipo de cuenta</option>
+          <option value="checking">Cuenta Corriente</option>
+          <option value="savings">Cuenta de Ahorro</option>
+        </select>
+      </div>
+      <div class="form-group-pass">
+        <label for="securityKey">Ingrese su clave de seguridad</label>
+        <input type="password" id="securityKey" placeholder="Clave" />
+      </div>
+      <div class="form-actions">
+        <button id="cancelButton">Cancelar</button>
+        <button id="addButton" disabled>Agregar</button>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <p>Su cuenta se ha añadido correctamente</p>
+        <button id="closeModal">Cerrar</button>
+      </div>
+    </div>
+    <script type="module" src="crearCuenta.js"></script>
+  </body>
+</html>
