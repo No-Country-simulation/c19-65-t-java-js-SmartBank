@@ -23,10 +23,10 @@
           <div class='flex flex-row gap-5'>
             <p class='text-5xl' id='saldo' data-visible='true'>$ 450.000</p>
             <button id='saldo-activo' class='hidden'>
-              <img  src="/ver-activo.svg" alt="icono ver" />
+              <img  src="/show.svg" alt="icono ver" />
             </button>
             <button id='saldo-oculto'>
-              <img src="/ver-desactivado.svg" alt="icono ver" />
+              <img src="/hide.svg" alt="icono ver" />
             </button>
           </div>
           <a href="/movimientos/?cuenta=123" target='_self' id='lnk_Movimientos' class='absolute bottom-5 right-5 text-lg'>Ver resumen</a>
@@ -55,30 +55,35 @@
     <section class='mx-32 my-4 h-auto text-root-text xl:w-5/6 xl:max-w-7xl'>
       <h3 class='font-semibold text-2xl mb-4'>Accesos rápidos</h3>
       <div class='flex flex-row flex-wrap gap-7 justify-evenly xl:justify-between h-auto'>
-        <a href='#QR' id='QR' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
-          <img src="/qr-activo.svg" alt="Logo: Código QR" />
+        <a href='#QR' id='QR' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+          <div class='qr-activo'></div>
+          <!-- <img src="/qr-activo.svg" alt="Logo: Código QR" /> -->
           <p class='text-xl'>Generar QR</p>
         </a>
-        <a href='#prestamos' id='prestamos' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
-          <img src="/cash-activo.svg" alt="Logo: Prestamos" />
+        <a href='#prestamos' id='prestamos' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+          <div class='cash-activo'></div>
+          <!-- <img src="/cash-activo.svg" alt="Logo: Prestamos" /> -->
           <p class='text-xl'>Préstamos</p>
         </a>
-        <a href='/transferir/' id='transferir' class='bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
-          <img src="/transf-activo.svg" alt="Logo: Transferencias" />
+        <a href='/transferir/' id='transferir' class='text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+          <div class='transf-activo'></div>
+          <!-- <img src="/transf-activo.svg" alt="Logo: Transferencias" /> -->
           <p class='text-xl'>Transferencias</p>
         </a>
-        <a href='#promociones' id='promociones' class='inactive-card bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
-          <img src="/percent-activo.svg" alt="Logo: Promociones" />
+        <a href='#promociones' id='promociones' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+          <div class='percent-activo'></div>
+          <!-- <img src="/percent-activo.svg" alt="Logo: Promociones" /> -->
           <p class='text-xl'>Promociones</p>
         </a>
-        <a href='/crearCuenta/' id='crearCuenta' class='bg-root-bg-card rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
-          <img src="/add-activo.svg" alt="Logo: Agregar cuenta" />
+        <a href='/crearCuenta/' id='crearCuenta' class='text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+          <div class='add-activo'></div>
+          <!-- <img src="/add-activo.svg" alt="Logo: Agregar cuenta" /> -->
           <p class='text-xl'>Agregar cuenta</p>
         </a>
       </div>
     </section>
 
-    <section class='flex items-center justify-center bg-root-bg-card mx-32 my-8 rounded-lg h-48 text-root-text xl:w-5/6 xl:max-w-7xl' style='width: calc(100% - 16rem)'>
+    <section class='flex items-center justify-center bg-root-bg-card mx-32 my-8 rounded-lg h-48 text-root-text xl:w-5/6 xl:max-w-7xl bg-gradient-to-r from-[#02378d] to-[#011f4f] text-white' style='width: calc(100% - 16rem)'>
       <h3 class='text-xl'>Publicidad</h3>
     </section>
 

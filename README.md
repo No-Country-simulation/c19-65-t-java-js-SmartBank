@@ -57,21 +57,17 @@
 ### cliente
 | Columna           | Tipo         | Descripción                   |
 |-------------------|--------------|-------------------------------|
-| idCliente         |  int         |                               |
-| email             |  varchar(25) |                               |
-| dni               |  int         |                               |
-| fechaNacimiento   |  date        |                               |
-| nombre            |  varchar(25) |                               |
-| apellido          |  varchar(25) |                               |
-| telefono          |  int         |                               |
-| domicilio         |  varchar(25) |                               |
-| pais              |  varchar(25) |                               |
-| idUsuario         |  int         |                               |
-### Tipo de Usuario
-| Columna       | Tipo         | Descripción                   |
-|---------------|--------------|-------------------------------|
-| idTipoUsuario | int          |      Auto Incremental         |
-| tipoUsuario   | Varchar(8)   |                               |
+| idCliente         | int          |                               |
+| email             | varchar(25)  |                               |
+| dni               | int          |                               |
+| fechaNacimiento   | date         |                               |
+| nombre            | varchar(25)  |                               |
+| apellido          | varchar(25)  |                               |
+| telefono          | int          |                               |
+| domicilio         | varchar(25)  |                               |
+| pais              | varchar(25)  |                               |
+| tipoUsuario       | varchar(25)  |                               |
+| contraseña        | varchar(8)   |                               |
 ### Cuenta
 | Columna       | Tipo         | Descripción                        |
 |---------------|--------------|------------------------------------|

@@ -1,5 +1,6 @@
-import { logOut, checkLogin } from '@auth/Auth'
+import { checkLogin } from '@auth/Auth'
 import { decryptString } from '@helpers/crypt'
+import { logOut } from "@services/userService"
 
 checkLogin()
 
@@ -27,8 +28,11 @@ const menuOptions = {
     
     let renderMenu = ''
     menuOptions[userRole].forEach(({label, url}) => {
-      renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
+      if(window.location.pathname !== url) {
+        renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
+      }
     })
+    
     document.querySelector('#navBar').innerHTML = `
       <div class="relative mx-auto w-screen px-2 sm:px-6 lg:px-8 bg-root-navBar">
         <div class="h-16 flex justify-between">

@@ -1,6 +1,11 @@
-import '@components/navBar.js'
-import '@components/header.js'
 import '@styles/style.css'
+import '@components/navBar'
+import '@components/header'
+import '@img/add-activo'
+import '@img/qr-activo'
+import '@img/cash-activo'
+import '@img/transf-activo'
+import '@img/percent-activo'
 
 // Elementos DOM
 const $accountsList = document.querySelector('#accountsList')
