@@ -11,6 +11,7 @@ export default {
       colors: {
         'root-background': 'var(--background-color)',
         'root-bg-card': 'var(--background-cards)',
+        'root-bg-card2': 'var(--background-cards2)',
         'root-text': 'var(--text-color)',
         'root-header': 'var(--header-bg)',
         'root-navBar': 'var(--navBar)',
