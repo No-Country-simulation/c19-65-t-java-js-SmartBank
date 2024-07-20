@@ -2,11 +2,7 @@ import { getAccounts } from '@services/acccountService'
 import '@styles/style.css'
 import '@components/navBar'
 import '@components/header'
-import '@img/add-activo'
-import '@img/qr-activo'
-import '@img/cash-activo'
-import '@img/transf-activo'
-import '@img/percent-activo'
+import '@helpers/logos'
 
 // Elementos DOM
 const $accountsList = document.querySelector('#accountsList')
