@@ -47,13 +47,6 @@
 
 ## <span>Tablas de la Base de Datos</span>
 
-### usuario
-| Columna        | Tipo         | Descripción                          |
-|----------------|--------------|--------------------------------------|
-| idUsuario      | int          |                                      |
-| idtipoUsuario  | int          | FK(Tipo de Usuario > IDtipo_usuario) |
-| usuario        | varchar(8)   |                                      |
-| contraseña     | varchar(8)   |                                      |
 ### cliente
 | Columna           | Tipo         | Descripción                   |
 |-------------------|--------------|-------------------------------|
