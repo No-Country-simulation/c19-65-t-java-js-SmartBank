@@ -15,7 +15,7 @@ export const setStorageItem = (key, value) => {
 
 export const getStorageItem = (key) => {
   try {
-    return localStorage.getItem(key)
+    return sessionStorage.getItem(key)
   } catch (error) {
     console.error('Error al obtener de Local Storage', error)
     return null

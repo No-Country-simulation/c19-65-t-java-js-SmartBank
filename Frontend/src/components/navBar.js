@@ -1,5 +1,6 @@
-import { logOut, checkLogin } from '@auth/Auth'
+import { checkLogin } from '@auth/Auth'
 import { decryptString } from '@helpers/crypt'
+import { logOut } from "@services/userService"
 
 checkLogin()
 
