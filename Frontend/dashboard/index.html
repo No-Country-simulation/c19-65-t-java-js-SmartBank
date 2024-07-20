@@ -11,13 +11,13 @@
     <header id='header'></header>
 
     <nav id='navBar'></nav>
-
+    <!-- w - 640+ ok -->
     <section class='flex flex-col items-center lg:items-normal text-root-text xl:w-5/6 xl:max-w-7xl mt-5'>
       <select class='outline outline-1 p-3 lg:ml-32 xl:ml-0 mt-4 w-96 lg:w-[17rem] xl:min-w-[475px] rounded-xl text-lg bg-transparent' id="accountsList">
         <option value="">Selecciona una cuenta</option>
         <option value="0800">0800 - Cuenta corriente</option>
       </select>
-      <div class='w-auto flex flex-wrap lg:mx-32 xl:mx-0 py-4 gap-10 justify-center lg:justify-between '>
+      <div class='max-w-full flex flex-wrap lg:mx-32 xl:mx-0 py-4 gap-10 justify-center lg:justify-between' style='width: calc(100vw - 16rem);'>
         <article id='tarjetaCuenta' class='relative bg-root-bg-card w-96 lg:w-[45%] xl:min-w-[475px] max-w-1/2 h-72 rounded-2xl p-5'>
           <h4 class='font-semibold text-xl'>Saldo en cuenta</h4>
           <div class='flex flex-row gap-5'>
@@ -55,27 +55,27 @@
     <section class='mx-32 my-4 h-auto text-root-text xl:w-5/6 xl:max-w-7xl'>
       <h3 class='font-semibold text-2xl mb-4'>Accesos rápidos</h3>
       <div class='flex flex-row flex-wrap gap-7 justify-evenly xl:justify-between h-auto'>
-        <a href='#QR' id='QR' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#QR' id='QR' class='inactive-card text-white bg-root-bg-card2 hover:bg-root-bg-card2Hover rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <div class='qr-activo'></div>
           <!-- <img src="/qr-activo.svg" alt="Logo: Código QR" /> -->
           <p class='text-xl'>Generar QR</p>
         </a>
-        <a href='#prestamos' id='prestamos' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#prestamos' id='prestamos' class='inactive-card text-white bg-root-bg-card2 hover:bg-root-bg-card2Hover rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <div class='cash-activo'></div>
           <!-- <img src="/cash-activo.svg" alt="Logo: Prestamos" /> -->
           <p class='text-xl'>Préstamos</p>
         </a>
-        <a href='/transferir/' id='transferir' class='text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='/transferir/' id='transferir' class='text-white bg-root-bg-card2 hover:bg-root-bg-card2Hover rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <div class='transf-activo'></div>
           <!-- <img src="/transf-activo.svg" alt="Logo: Transferencias" /> -->
           <p class='text-xl'>Transferencias</p>
         </a>
-        <a href='#promociones' id='promociones' class='inactive-card text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='#promociones' id='promociones' class='inactive-card text-white bg-root-bg-card2 hover:bg-root-bg-card2Hover rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <div class='percent-activo'></div>
           <!-- <img src="/percent-activo.svg" alt="Logo: Promociones" /> -->
           <p class='text-xl'>Promociones</p>
         </a>
-        <a href='/crearCuenta/' id='crearCuenta' class='text-white bg-root-bg-card2 rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
+        <a href='/crearCuenta/' id='crearCuenta' class='text-white bg-root-bg-card2 hover:bg-root-bg-card2Hover rounded-lg min-h-36 min-w-44 xl:w-48 xl:h-36 flex flex-col justify-center items-center gap-3'>
           <div class='add-activo'></div>
           <!-- <img src="/add-activo.svg" alt="Logo: Agregar cuenta" /> -->
           <p class='text-xl'>Agregar cuenta</p>

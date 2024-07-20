@@ -9,9 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'root-background': 'var(--background-color)',
-        'root-bg-card': 'var(--background-cards)',
-        'root-bg-card2': 'var(--background-cards2)',
+        'root-background': 'var(--bgColor)',
+        'root-bg-card': 'var(--bgCards)',
+        'root-bg-card2': 'var(--bgCards2)',
+        'root-bg-card2Hover': 'var(--bgCards2Hover)',
         'root-text': 'var(--text-color)',
         'root-header': 'var(--header-bg)',
         'root-navBar': 'var(--navBar)',
