@@ -35,7 +35,7 @@
                 <a href="#" class="items-normal hover:text-blue-600">He perdido mi contraseña</a>
               </p>
             </div>
-            <button type="submit" class="w-full rounded bg-blue-300 text-white p-3" disabled >
+            <button type="submit" class="w-full rounded bg-blue-600 text-white p-3 hover:bg-blue-700 disabled:bg-blue-300" disabled >
               Ingresar
             </button>
           </form>
@@ -53,14 +53,14 @@
             <input required type="text" placeholder="Dirección" name='direccion' class="w-full p-3 border "/>
             <input required type="password" placeholder="Contraseña" id="passw1" name='passw1' minlength="6" maxlength="10" class="w-full p-3 border "/>
             <input required type="password" placeholder="Confirmar contraseña" id="passw2" name='passw2' minlength="6" maxlength="10"  class="w-full p-3 border "  />
-            <label for="agree">
+            <label for="agree" class='block'>
               <input required type="checkbox" name="agree" id="agree" /> Acepto términos y condiciones 
             </label>
             <!-- <button id="btnAccount" class="ghost">Registrarse</button> -->
             <div class="flex-col justify-between text-sm">
               <p class="text-center">Ya tengo cuenta <a href="#" id="ingresarBtn" class="text-blue-600">Ingresa</a></p> 
             </div>
-            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700">Ingresar</button>
+            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 disabled:bg-blue-300">Registrarse</button>
           </form>
         </div>
       </div> 
