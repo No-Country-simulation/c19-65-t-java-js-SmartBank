@@ -11,6 +11,7 @@ deleteAllStorage()
 // * Listeners de formularios
 document.querySelector('#login').addEventListener('submit', async (e) => {
   e.preventDefault()
+  console.log('#login');
   const { nombre: name, contraseña: password } = Object.fromEntries(new FormData(e.target))
   const resp = await logIn({ name, password })
   
@@ -24,7 +25,7 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
 
 document.querySelector('#signup').addEventListener('submit', async (e) => {
   e.preventDefault()
-  console.log('signup')
+  console.log('#signup')
   const { nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2} = Object.fromEntries(new FormData(e.target))
 
   // TODO - Conexion con el backend
