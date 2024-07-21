@@ -26,7 +26,7 @@ export async function logIn(formData) {
       }
     } else {
       // ? Sección para probar sin backend
-      const status = 200 // 200 | 401
+      const status = 401 // 200 | 401
       if (status !== 200) {
         // @fail - Acceso denegado sin backend
         throw new Error(`Fallo sin backend`)

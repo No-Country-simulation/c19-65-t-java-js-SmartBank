@@ -3,6 +3,7 @@ import '@components/header.js'
 
 import { logIn, signUp } from "@services/userService"
 import { deleteAllStorage } from "@services/storageService"
+import { displayModal } from '@auth/Auth'
 
 // * Reset SessionStorage
 deleteAllStorage()
@@ -15,7 +16,10 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
   
   // ! Acción en caso de fallar el login
   // ! {response: false, message: '401 - El usuario no existe'}
-  console.log(resp) 
+  if(!resp.response){
+    displayModal('Usuario o contraseña incorrecto')
+  }
+  
   // showErrorMessage(input, 'message')
 })
 
@@ -30,6 +34,7 @@ document.querySelector('#signup').addEventListener('submit', async (e) => {
   // ! Acción en caso de fallar: Usuario ya existe
   // ! {response: false, message: 'Fallo en el registro'}
   // console.log(resp)
+  displayModal('Fallo al registrar')
   // showErrorMessage(input, 'message')
 })
 

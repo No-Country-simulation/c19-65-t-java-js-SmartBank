@@ -28,6 +28,9 @@ export function displayModal(message) {
   document.querySelector('#modal').style.top = '0'
   document.querySelector('[for="cerrar-modal"]').classList.remove('hidden')
   document.querySelector('#modalmsg').textContent = message
+  setTimeout(() => {
+    document.querySelector('[for="cerrar-modal"]').click()
+  }, 3000)
 }
 
 function onTimeout() {
