@@ -9,7 +9,7 @@ body {
 }
 
 .form-container {
-  background-color: #a1c4fd;
+  background-color: #b1c5e7;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -27,10 +27,10 @@ body {
 .form-group {
   margin-top: 200px;
   margin-bottom: 15px;
-  text-align: left;
 }
 .form-group-pass {
-  margin-bottom: 15px;
+  margin-bottom: 200px;
+  margin-top: 60px;
 }
 #securityKey {
   width: 20%;
@@ -74,13 +74,15 @@ button {
 #cancelButton {
   background-color: #ffff;
   color: #0345b0;
-  padding: 4px;
+  padding: 4px 20px 4px 20px;
+  border: 1px solid black;
 }
 
 #addButton {
-  background-color: #0345b0;
-  color: white;
-  padding: 4px;
+  background-color: #b1c5e7;
+  color: black;
+  border: 1px solid black;
+  padding: 4px 20px 4px 20px;
 }
 
 button:disabled {
