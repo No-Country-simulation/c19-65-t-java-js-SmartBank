@@ -17,10 +17,9 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
   // ! Acción en caso de fallar el login
   // ! {response: false, message: '401 - El usuario no existe'}
   if(!resp.response){
-    displayModal('Usuario o contraseña incorrecto')
+    displayModal('Usuario y/o contraseña incorrecto')
+    // showErrorMessage(input, 'message')
   }
-  
-  // showErrorMessage(input, 'message')
 })
 
 document.querySelector('#signup').addEventListener('submit', async (e) => {
@@ -33,9 +32,10 @@ document.querySelector('#signup').addEventListener('submit', async (e) => {
   
   // ! Acción en caso de fallar: Usuario ya existe
   // ! {response: false, message: 'Fallo en el registro'}
-  // console.log(resp)
-  displayModal('Fallo al registrar')
-  // showErrorMessage(input, 'message')
+  // if(!resp.response){
+    displayModal('Fallo al registrar')
+  //   showErrorMessage(input, 'message')
+  // }
 })
 
 // * Funcionalidad ver/ocultar password
