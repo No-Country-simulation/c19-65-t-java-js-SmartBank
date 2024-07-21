@@ -1,3 +1,4 @@
+// * GET - Dashboard && Transferencias
 export async function getAccounts(UsuarioID) { 
   console.log('GetAccounts')
   try {
@@ -38,7 +39,8 @@ export async function getAccounts(UsuarioID) {
   }
 }
 
-export async function getMovements(accountInfo) { 
+// * GET - Movimientos
+export async function getMovements(AccountID) { 
   // Obtener todos los movimientos de una cuenta
   console.log('Get Movements')
   try {
@@ -49,7 +51,7 @@ export async function getMovements(accountInfo) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body:  JSON.stringify(accountInfo)
+        body:  JSON.stringify(AccountID)
       });
       
       if (resp.status !== 200) {
@@ -84,15 +86,16 @@ export async function getMovements(accountInfo) {
   }
 }
 
+// * POST - Transferencias
 export async function setMovement(movementInfo) {
   // Agregar una transacción a una cuenta
   // ? Cuenta destino puede ser interna o externa: Ver campo Banco === SmartBank
-  console.log('Get Movements')
+  console.log('Set Movements')
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){
       const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/movimientos`, {
-        method: "GET",
+        method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
@@ -119,6 +122,48 @@ export async function setMovement(movementInfo) {
       if (status === 200) {
         // @ok - Información de las cuentas
         return {response: true, message: 'Transacción exitosa'}
+      }
+    }
+  } catch (e) {
+    return {response: false, message: e.message}
+  }
+}
+
+// * POST - Crear Cuenta
+export async function createAccount(accountInfo){
+  // Crear una nueva cuenta de usuario
+  console.log('Create Account')
+  try {
+    // ? Sección con backend
+    if (import.meta.env.VITE_PUBLIC_API){
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/cuentas`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body:  JSON.stringify(accountInfo)
+      });
+      
+      if (resp.status !== 200) {
+        // @fail - Falla solicitud
+        const { error } = await resp.json()
+        throw new Error(`${resp.status} - ${error}`)
+      }
+  
+      if (resp.status === 200) {
+        // @ok - Acceso valido
+        return {response: true, message: 'Cuenta creada con exito'}
+      }
+    } else {
+      // ? Sección para probar sin backend
+      const status = 200 // 200 | 401
+      if (status !== 200) {
+        // @fail - Falla solicitud
+        throw new Error(`Fallo sin backend`)
+      }
+      if (status === 200) {
+        // @ok - Información de las cuentas
+        return {response: true, message: 'Cuenta creada con exito'}
       }
     }
   } catch (e) {
