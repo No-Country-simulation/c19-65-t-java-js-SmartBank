@@ -17,7 +17,7 @@ public class Cliente {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 
-   private Long idCliente;
+  private Long idCliente;
   private String email;
   private int dni ;
   private LocalDateTime fechaNacimiento ;
@@ -26,9 +26,11 @@ public class Cliente {
   private int telefono ;
   private  String domicilio;
   private String pais;
-  @OneToOne
+ /* @OneToOne
   @JoinColumn(name = "idUsuario")
-  private  Usuario idUsuario;
+  private  Usuario idUsuario; */
   @OneToMany
   private List<Cuenta> idCuenta;
-}
+  private TipoUsuario tipoUsuario;
+  private String contrasenia;
+          }

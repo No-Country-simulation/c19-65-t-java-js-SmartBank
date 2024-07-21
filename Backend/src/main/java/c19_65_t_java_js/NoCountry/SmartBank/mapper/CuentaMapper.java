@@ -8,6 +8,7 @@ public class CuentaMapper {
     public static CuentaDTO convertirEntidadDTO(Cuenta cuenta) {
         return new CuentaDTO(
                 cuenta.getIdCuenta(),
+                cuenta.getIdCliente(),
                 cuenta.getNroCuenta(),
                 cuenta.getIdTipoCuenta(),
                 cuenta.getSaldo()
@@ -19,6 +20,7 @@ public class CuentaMapper {
     public static Cuenta convertirDTOaEntidad(CuentaDTO cuentaDTO) {
         Cuenta cuenta = new Cuenta();
         cuenta.setIdCuenta(cuentaDTO.idCuenta());
+        cuenta.setIdCliente(cuentaDTO.idCliente());
         cuenta.setNroCuenta(cuentaDTO.nroCuenta());
         cuenta.setIdTipoCuenta(cuentaDTO.idsTipoCuenta());
         cuenta.setSaldo(cuenta.getSaldo());

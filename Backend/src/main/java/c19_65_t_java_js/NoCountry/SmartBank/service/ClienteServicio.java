@@ -7,7 +7,6 @@ import c19_65_t_java_js.NoCountry.SmartBank.model.Cliente;
 
 
 import c19_65_t_java_js.NoCountry.SmartBank.repository.ClienteRepositorio;
-import c19_65_t_java_js.NoCountry.SmartBank.repository.UsuarioRepositorio;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,7 @@ public class ClienteServicio {
 
     @Autowired
     private ClienteRepositorio clienteRepositorio;
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
+  
 
     public List<ClienteDTO> listarClientes() {
         List<Cliente> clientes = clienteRepositorio.findAll();
@@ -43,9 +41,11 @@ public class ClienteServicio {
         cliente.setTelefono(clienteDTO.telefono());
         cliente.setDomicilio(clienteDTO.domicilio());
         cliente.setPais(clienteDTO.pais());
+        cliente.setContrasenia(clienteDTO.contrasenia());
 
-        // Manejar la relación con Usuario
-        cliente.setIdUsuario(clienteDTO.idUsuario());
+        // Manejar la relación con Tipo Usuario
+     
+        cliente.setTipoUsuario(clienteDTO.tipoUsuario());
 
         // Manejar la relación con Cuentas
         cliente.setIdCuenta(clienteDTO.idsCuentas());
@@ -67,9 +67,10 @@ public class ClienteServicio {
         cliente.setTelefono(clienteDTO.telefono());
         cliente.setDomicilio(clienteDTO.domicilio());
         cliente.setPais(clienteDTO.pais());
+        cliente.setContrasenia(clienteDTO.contrasenia());
 
         // Actualizar relación con Usuario
-        cliente.setIdUsuario(clienteDTO.idUsuario());
+        cliente.setTipoUsuario(clienteDTO.tipoUsuario());
 
         // Actualizar relación con Cuentas
         cliente.setIdCuenta(clienteDTO.idsCuentas());
