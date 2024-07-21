@@ -140,19 +140,22 @@ function validateForm(input, submitBtn, inputs) {
 
 // ? Mensajes de error
 function showErrorMessage(input, message) {
-  let error = input.nextElementSibling;
-  if (!error || !error.classList.contains('error-message')) {
+  const isAgreeCheckbox = input.id === 'agree'
+  let error = isAgreeCheckbox ? input.parentNode.nextSibling : input.nextElementSibling
+  if (!error || !error.classList?.contains('error-message')) {
     error = document.createElement('span');
     error.className = 'error-message';
     error.style.color = 'red';
     error.textContent = message;
-    input.parentNode.insertBefore(error, input.nextSibling);
+    if (isAgreeCheckbox) input.parentNode.parentNode.insertBefore(error, input.parentNode.nextSibling)
+    else input.parentNode.insertBefore(error, input.nextSibling)
   }
   input.style.borderColor = 'red';
 }
 
 function removeErrorMessage(input) {
-  let error = input.nextElementSibling;
+  const isAgreeCheckbox = input.id === 'agree'
+  let error = isAgreeCheckbox? input.parentNode.nextElementSibling :input.nextElementSibling
   if (error && error.classList.contains('error-message')) {
     error.parentNode.removeChild(error);
   }
