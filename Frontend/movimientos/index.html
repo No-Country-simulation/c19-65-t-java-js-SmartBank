@@ -4,11 +4,53 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/smartBank.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>SmartBank - Movimientos</title>
   </head>
-  <body>
-    <h1 class='text-blue-900 uppercase'>Movimientos</h1>
+  
+  <body class='bg-root-background flex flex-col items-center'>
+    <header id='header'></header>
+    <nav id='navBar'></nav>
+    <div id="backButtonPlaceholder" class="justify-start"></div>
+    
+    <div class="p-4">
+      <div class="flex items-center mb-4 space-x-4">
+        
+        <h1 class="text-2xl font-bold">Movimientos de cuenta</h1>
+      </div>
+      <div class="mb-4">
+        <select class='outline outline-1 p-3 lg:ml-32 xl:ml-0 mt-4 max-w-[80vw] w-96 lg:w-[17rem] xl:min-w-[475px] rounded-xl text-lg bg-transparent' id="accountsList">
+          <option value="">Selecciona una cuenta</option>
+          <option value="0800">0800 - Cuenta corriente</option>
+        </select>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-zinc-300">
+          <thead class="bg-blue-900 text-white">
+            <tr>
+              <th class="py-2 px-4 border-b">Fecha</th>
+              <th class="py-2 px-4 border-b">Tipo de movimiento</th>
+              <th class="py-2 px-4 border-b">Cuenta origen</th>
+              <th class="py-2 px-4 border-b">Cuenta destino</th>
+              <th class="py-2 px-4 border-b">Monto</th>
+              <th class="py-2 px-4 border-b">Saldo</th>
+            </tr>
+          </thead>
+          <tbody class="bg-blue-50">
+            <tr>
+              <td class="py-2 px-4 text-center border-b">------</td>
+              <td class="py-2 px-4 text-center border-b">------</td>
+              <td class="py-2 px-4 text-center border-b">------</td>
+              <td class="py-2 px-4 text-center border-b">------</td>
+              <td class="py-2 px-4 text-center border-b">------</td>
+              <td class="py-2 px-4 text-center border-b">------</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
     <!-- <div id="app"></div> -->
     <script type="module" src="movimientos.js"></script>
+    <script type="module" src="/dashboard/dashboard.js"></script>
   </body>
 </html>
