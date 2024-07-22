@@ -37,10 +37,10 @@
     - Pagos de servicios (próximamente)
     - Préstamos (próximamente)
 
-### Crear Cuenta <!-- TODO - Vista sin diseño en Figma -->
+### Crear Cuenta
 - Descripción: Permite a los usuarios crear nuevas cuentas bancarias.
 
-### Movimientos <!-- TODO - Vista sin diseño en Figma -->
+### Movimientos <!-- TODO - Verificar columnas y agregar dropdown -->
 - Descripción: Muestra el historial de transacciones de la cuenta.
 
 ### Transferir (Recibir Notificación)
@@ -85,14 +85,14 @@
 ### Movimiento
 | Columna                | Tipo         | Descripción                   |
 |------------------------|--------------|-------------------------------|
-| idMovimiento           |  int         |                               |
-| idCuenta               |  int         | FK(Cuentas > IDCuenta)        |
-| monto                  |  int         | (Monto transacción +/-)       |
-| saldo                  |  int         |                               |
+| idMovimiento           | int          |                               |
+| idCuenta               | int          | FK(Cuentas > IDCuenta)        |
+| monto                  | int          | (Monto transacción +/-)       |
+| saldo                  | int          |                               |
 | CtaOrigen              | varchar(25)  |                               |
 | CtaDestino             | varchar(25)  |                               |
 | Descripción Movimiento | varchar(25)  |                               |
-| Fecha Movimiento       |   date       |                               |
+| Fecha Movimiento       | date         |                               |
 ### TipoCuenta
 | Columna      | Tipo         | Descripción                 |
 |--------------|--------------|-----------------------------|

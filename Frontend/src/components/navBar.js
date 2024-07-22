@@ -1,30 +1,41 @@
+import { checkLogin } from '@auth/Auth'
+import { decryptString } from '@helpers/crypt'
+import { logOut } from "@services/userService"
+import '@helpers/logos'
+
+checkLogin()
+
 // Datos a obtiener del backend o localstorage
-const userRole = 'client' 
+// const userInfo = {
+//   userName: 'Anomimo',
+//   imgUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+// }
 
-const userInfo = {
-  userName: 'Anomimo',
-  imgUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-}
-
-//
 const menuOptions = {
-  client: [
+  Cliente: [
     {label: 'Dashboard', url: '/dashboard/'},
     {label: 'Crear cuenta', url: '/crearCuenta/'},
     {label: 'Movimientos', url: '/movimientos/'},
     {label: 'Transferir', url: '/transferir/'}
   ],
-  admin: []
-}
-
-let renderMenu = ''
-menuOptions['client'].forEach(({label, url}) => {
-  renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
-})
+  Admin: []
+};
 
 //
-document.querySelector('#navBar').innerHTML = `
-  <div class="relative mx-auto w-full px-2 sm:px-6 lg:px-8 bg-root-navBar">
+(async () => {
+  try {
+    const userRole = await decryptString(sessionStorage.getItem('TU'))
+    if (!userRole) throw new Error('Error de autenticación')
+    
+    let renderMenu = ''
+    menuOptions[userRole].forEach(({label, url}) => {
+      if(window.location.pathname !== url) {
+        renderMenu += `<a href="${url}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">${label}</a>`
+      }
+    })
+    
+    document.querySelector('#navBar').innerHTML = `
+      <div class="relative mx-auto w-screen px-2 sm:px-6 lg:px-8 bg-root-navBar">
         <div class="h-16 flex justify-between">
           <!-- Icono Menu desplegable -->
           <div class="flex items-center">
@@ -59,7 +70,7 @@ document.querySelector('#navBar').innerHTML = `
                 <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full" src="${userInfo.imgUrl}" alt="Foto de ${userInfo.userName}">
+                  <div class='perfil-activo'></div>
                 </button>
               </div>
       
@@ -76,54 +87,63 @@ document.querySelector('#navBar').innerHTML = `
         <div class="absolute hidden bg-root-navBar w-full sm:w-1/3 left-0 z-10 rounded-br-lg" id="dropdown-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             ${renderMenu}
-            <a href="/crearCuenta/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Crear cuenta</a>
           </div>
         </div>
-      </div>`
+      </div>
+    `
 
+    const $logOutBtn = document.querySelector('#user-menu-sign-out')
 
-const $navBar = document.querySelector('nav')
+    // Dropdown Main Menu
+    const $menu = document.querySelector('#menu')
+    const $menu_open = $menu.querySelector('#menu-open')
+    const $menu_close = $menu.querySelector('#menu-close')
+    const $dropdown_menu = document.querySelector('#dropdown-menu')
 
-// Dropdown Main Menu
-const $menu = document.querySelector('#menu')
-const $menu_open = $menu.querySelector('#menu-open')
-const $menu_close = $menu.querySelector('#menu-close')
-const $dropdown_menu = document.querySelector('#dropdown-menu')
+    function toggleMenu (menuStatus) {
+      $menu_open.style.display = menuStatus ? 'block' : 'none'
+      $menu_close.style.display = menuStatus ? 'none' : 'block'
+      $dropdown_menu.style.display = menuStatus ? 'none' : 'block'
+      $menu.dataset.status = !menuStatus
+    }
 
-function toggleMenu (menuStatus) {
-  $menu_open.style.display = menuStatus ? 'block' : 'none'
-  $menu_close.style.display = menuStatus ? 'none' : 'block'
-  $dropdown_menu.style.display = menuStatus ? 'none' : 'block'
-  $menu.dataset.status = !menuStatus
-}
+    $menu.addEventListener('click', () => {
+      const menuStatus = $menu.dataset.status === 'true'
+      toggleMenu(menuStatus)
+    })
 
-$menu.addEventListener('click', (e) => {
-  const menuStatus = $menu.dataset.status === 'true'
-  toggleMenu(menuStatus)
-})
+    // Dropdown User Menu
+    const $user_menu_button = document.querySelector('#user-menu-button')
+    const $user_menu = document.querySelector('#user-menu')
 
-// Dropdown User Menu
-const $user_menu_button = document.querySelector('#user-menu-button')
-const $user_menu = document.querySelector('#user-menu')
+    function toggleUserMenu (menuStatus) {
+      $user_menu.style.display = menuStatus ? 'none' : 'block'
+      $user_menu.dataset.status = !menuStatus
+    }
 
-function toggleUserMenu (menuStatus) {
-  $user_menu.style.display = menuStatus ? 'none' : 'block'
-  $user_menu.dataset.status = !menuStatus
-}
+    $user_menu_button.addEventListener('click', () => {
+      const menuStatus = $user_menu.dataset.status === 'true'
+      toggleUserMenu(menuStatus)
+    })
 
-$user_menu_button.addEventListener('click', () => {
-  const menuStatus = $user_menu.dataset.status === 'true'
-  toggleUserMenu(menuStatus)
-})
+    document.querySelector('body').addEventListener('click', (e) => {
+      const isNavBar = e.target.closest('#navBar')
+      const menuStatus = $menu.dataset.status === 'true' //dropdown menu
+      const UserMenuStatus = $user_menu.dataset.status === 'true'//user menu
+      
+      if(menuStatus && !isNavBar) 
+        toggleMenu(menuStatus)
 
-document.querySelector('body').addEventListener('click', (e) => {
-  const isNavBar = e.target.closest('nav')
-  const menuStatus = $menu.dataset.status === 'true' //dropdown menu
-  const UserMenuStatus = $user_menu.dataset.status === 'true'//user menu
-  
-  if(menuStatus && !isNavBar) 
-    toggleMenu(menuStatus)
+      if(UserMenuStatus && !isNavBar)
+        toggleUserMenu(UserMenuStatus)
+    })
 
-  if(UserMenuStatus && !isNavBar)
-    toggleUserMenu(UserMenuStatus)
-})
+    $logOutBtn.addEventListener('click', () => {
+      logOut()
+    })
+
+  } catch (e) {
+    logOut()
+  }
+
+})();

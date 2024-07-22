@@ -1,4 +1,4 @@
-/* import "@components/header.js"; */
+import "@components/header.js";
 import "@components/navBar.js";
 import "@styles/style.css";
 
