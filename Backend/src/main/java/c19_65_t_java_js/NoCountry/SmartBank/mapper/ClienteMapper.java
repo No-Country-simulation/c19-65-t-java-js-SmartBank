@@ -16,7 +16,8 @@ public class ClienteMapper {
         cliente.setTelefono(clienteDTO.telefono());
         cliente.setDomicilio(clienteDTO.domicilio());
         cliente.setPais(clienteDTO.pais());
-        cliente.setIdUsuario(clienteDTO.idUsuario());
+        cliente.setTipoUsuario(clienteDTO.tipoUsuario());
+        cliente.setContrasenia(clienteDTO.contrasenia());
 
         return cliente;
 
@@ -33,7 +34,8 @@ public class ClienteMapper {
                 cliente.getTelefono(),
                 cliente.getDomicilio(),
                 cliente.getPais(),
-                cliente.getIdUsuario(),
+                cliente.getTipoUsuario(),
+                cliente.getContrasenia(),
                 cliente.getIdCuenta()
 
         );

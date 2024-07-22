@@ -1,17 +1,26 @@
 package c19_65_t_java_js.NoCountry.SmartBank.model;
+//ANTONIO
+
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-import java.util.List;
 
-//ANTONIO
 @Data
-@Entity
-@Table(name = "tipoCuenta ")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "TipoCuenta")
+@Table(name = "tipocuenta")
 public class TipoCuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private Long idTipoUsuario;
+    @Enumerated(EnumType.STRING)
+    private Moneda moneda;
+
+    @Enumerated(EnumType.STRING)
+    private  Descripcion descripcion;
+
+
 }

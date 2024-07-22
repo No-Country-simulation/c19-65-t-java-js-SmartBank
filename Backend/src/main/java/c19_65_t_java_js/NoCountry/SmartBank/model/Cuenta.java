@@ -6,22 +6,17 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-//CHRIS
+//Sara
 @Entity
 @Table(name = "cuenta")
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long idCuenta;
-  private int nroCuenta;
-  @OneToMany
-  private List <TipoCuenta> idTipoCuenta;
-  private  double saldo;
- // @OneToMany
-  //private List<Cliente>  idCliente;
-
-
-
-
-    }
+    private int nroCuenta;
+    @OneToMany
+    private List <TipoCuenta> idTipoCuenta;
+    private  double saldo;
+    @OneToOne
+    private Cliente  idCliente;
+}
