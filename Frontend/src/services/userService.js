@@ -22,6 +22,7 @@ export async function logIn(formData) {
       if (resp.status === 200) {
         // @ok - Acceso valido
         const {userName, tipoUsuario, token} = await resp.json()
+        
         return setLoginValues (userName, tipoUsuario, token)
       }
     } else {

@@ -95,13 +95,13 @@ function validateDNI(dni) {
 }
 
 function validatePasswords() {
-    if (password1.value === password2.value) {
-      password2.setCustomValidity('');
-      removeErrorMessage(password2);
-    } else {
-      password2.setCustomValidity('Las contraseñas no coinciden');
-      showErrorMessage(password2, 'Las contraseñas no coinciden');
-    }
+  if (password1.value === password2.value) {
+    password2.setCustomValidity('');
+    removeErrorMessage(password2);
+  } else {
+    password2.setCustomValidity('Las contraseñas no coinciden');
+    showErrorMessage(password2, 'Las contraseñas no coinciden');
+  }
 }
 
 function validateInput(input) {
