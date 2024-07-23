@@ -12,26 +12,23 @@
     <nav id="navBar"></nav>
     <div class="form-container">
       <h1>Formulario Bancario</h1>
-      <form class="formularioCenter" id="bankForm">
-        <label for="fullName">Nombre y Apellido:</label>
-        <input type="text" id="fullName" name="fullName" required />
-
-        <label for="dni">DNI o RUT:</label>
-        <input type="text" id="dni" name="dni" required />
-
-        <label for="bank">Banco:</label>
-        <input type="text" id="bank" name="bank" required />
-
-        <label for="accountType">Tipo de Cuenta:</label>
-        <select id="accountType" name="accountType" required>
+      <form class="formularioCenter" id="transferir">
+        <label for="accountOut">Cuenta Origen</label>
+        <select id="accountOut" name="accountOut" required>
           <option value="" disabled selected>Seleccione una opción</option>
           <option value="savings">Ahorros</option>
           <option value="current">Corriente</option>
           <option value="current">Vista</option>
         </select>
 
+        <label for="accountIn">Cuenta destino:</label>
+        <input type="text" id="accountIn" name="accountIn" required />
+
         <label for="amount">Monto:</label>
         <input type="number" id="amount" name="amount" required />
+
+        <label for="Description">Descripcción</label>
+        <input type="text" id="Description" name="Description" required />
 
         <label for="securityKey">Clave de Seguridad:</label>
         <input type="password" id="securityKey" name="securityKey" required />

@@ -2,29 +2,30 @@ import "@components/header.js"
 import "@components/navBar.js";
 import "@styles/style.css";
 
+import { liveValidation } from '@helpers/liveValidations'
+import { displayModal } from '@auth/Auth'
+
 document
-  .getElementById("bankForm")
-  .addEventListener("submit", function (event) {
+  .getElementById("transferir")
+  .addEventListener("submit", async function (event) {
     event.preventDefault();
-
-    const fullName = document.getElementById("fullName").value;
-    const dni = document.getElementById("dni").value;
-    const bank = document.getElementById("bank").value;
-    const accountType = document.getElementById("accountType").value;
-    const amount = document.getElementById("amount").value;
-    const securityKey = document.getElementById("securityKey").value;
-
-    /* if (fullName && dni && bank && accountType && amount && securityKey) {
-      alert(
-        `Nombre y Apellido: ${fullName}\nDNI o RUT: ${dni}\nBanco: ${bank}\nTipo de Cuenta: ${accountType}\nMonto: ${amount}`
-      );
+    console.log('transferir')
+    const { accountOut, accountIn, amount, Description, securityKey } = Object.fromEntries(new FormData(event.target))
+    console.log(accountOut, accountIn, amount, Description, securityKey)
+    // const resp = await setMovement({ accountOut, accountIn, amount, Description, securityKey })
+    // ! Acción en caso de fallar el login
+    // ! {response: false, message: '401 - El usuario no existe'}
+    if(!resp.response) {
+      displayModal("Transacción fallida.");
     } else {
-      alert("Por favor, complete todos los campos requeridos.");
-    } */
-    if (fullName && dni && bank && accountType && amount && securityKey) {
       // Mostrar ventana emergente de confirmación
-      alert("Su transferencia se ha realizado con éxito!");
-    } else {
-      alert("Por favor, complete todos los campos requeridos.");
+      displayModal("Su transferencia se ha realizado con éxito!");
     }
   });
+
+
+//* Live Validation - Formulario Login
+
+const transferBtn = document.querySelector('#transferir button')
+const transferInputs = document.querySelectorAll('#transferir select, #transferir input')
+liveValidation(transferBtn, transferInputs)
