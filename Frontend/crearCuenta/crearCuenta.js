@@ -2,32 +2,35 @@ import "@components/header.js";
 import "@components/navBar.js";
 import "@styles/style.css";
 
-document.addEventListener("DOMContentLoaded", function () {
-  const accountType = document.getElementById("accountType");
-  const securityKey = document.getElementById("securityKey");
-  const addButton = document.getElementById("addButton");
-  const cancelButton = document.getElementById("cancelButton");
-  const modal = document.getElementById("modal");
-  const closeModal = document.getElementById("closeModal");
+import { liveValidation } from '@helpers/liveValidations'
+import { displayModal } from '@auth/Auth'
+// import { createAccount } from '@services/acccountService'
 
-  function validateForm() {
-    addButton.disabled = accountType.value === "" || securityKey.value === "";
-  }
+//* Live Validation - Formulario Transferir
 
-  accountType.addEventListener("change", validateForm);
-  securityKey.addEventListener("input", validateForm);
+const AccountCreateBtn = document.querySelector('#crearCuenta [type="submit"]')
+const AccountCreateInputs = document.querySelectorAll('#crearCuenta select, #crearCuenta input')
+liveValidation(AccountCreateBtn, AccountCreateInputs)
 
-  addButton.addEventListener("click", function () {
-    modal.style.display = "flex";
-  });
+//* Event listeners
 
-  closeModal.addEventListener("click", function () {
-    modal.style.display = "none";
-  });
+document.querySelector('#crearCuenta').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  console.log('CrearCuenta')
+    const { accountType, password } = Object.fromEntries(new FormData(e.target))
+    console.log(accountType, password)
+    // const resp = await createAccount({ accountType, password })
+    
+    // ! Acción en caso de fallar la creación de la cuenta
+    // ! {response: false, message: '401 - El usuario no existe'}
+    const resp = {response: false}
+    if(resp.response){
+      displayModal('Transacción Fallida')
+    } else {
+      displayModal('Cuenta creada con exito')
+    }
+})
 
-  cancelButton.addEventListener("click", function () {
-    accountType.value = "";
-    securityKey.value = "";
-    validateForm();
-  });
-});
+document.querySelector('#crearCuenta [type="reset"]').addEventListener('click', () => {
+  AccountCreateBtn.disabled = true
+})
