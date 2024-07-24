@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+  --bgColor: #fff;
+  --bgCards: #B1C5E7;
+  --bgCards2: #0345B0;
+  --bgCards2Hover: #033E9E;
+  --text-dark: #000;
+  --text-light: #fff;
+  --header-bg: #011f4f;
+  --navBar: #023484;
+  --popup: #023484;
+}
+
+@layer utilities {
+  .items-normal {
+    align-items: normal;
+  }
+  
+}
+
+@layer components {
+  .opacity-children-40 > *:not(#noCountMssg) {
+    @apply opacity-40
+  }
+
+  .inactive-card {
+    @apply opacity-50 pointer-events-none
+  }
+}

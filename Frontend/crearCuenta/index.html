@@ -1,15 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/svg+xml" href="/smartBank.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="crearCuenta.css" />
+    <title>SmartBank - Crear Cuenta</title>
   </head>
   <body>
-    <h1 class='text-blue-900 uppercase'>Crear Cuenta Bancaria</h1>
-    <!-- <div id="app"></div> -->
+    <header id="header"></header>
+    <nav id="navBar"></nav>
+    <div class="form-container">
+      <h2>Agregar cuenta bancaria</h2>
+      <form id='crearCuenta'>
+        <div class="form-group">
+          <label for="accountType" class="hidden">Tipo de cuenta</label>
+          <select id="accountType" name='accountType'>
+            <option value="">Tipo de cuenta</option>
+            <option value="checking">Cuenta Corriente</option>
+            <option value="savings">Cuenta de Ahorro</option>
+          </select>
+        </div>
+        <div class="form-group-pass">
+          <label for="securityKey">Ingrese su clave de seguridad</label>
+          <input type="password" id="securityKey" name='password' placeholder="Clave" />
+        </div>
+        <div class="form-actions">
+          <button type='reset' id="cancelButton">Cancelar</button>
+          <button type='submit' id="addButton" disabled>Agregar</button>
+        </div>
+      </form>
+    </div>
     <script type="module" src="crearCuenta.js"></script>
   </body>
 </html>

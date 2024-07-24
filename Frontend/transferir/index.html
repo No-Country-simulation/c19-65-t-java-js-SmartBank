@@ -1,15 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/svg+xml" href="/smartBank.svg" />
+    <link rel="stylesheet" href="transferir.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>SmartBanck - Transferencias</title>
   </head>
   <body>
-    <h1 class='text-blue-900 uppercase'>Transferir</h1>
-    <!-- <div id="app"></div> -->
+    <header id='header'></header>
+    <nav id="navBar"></nav>
+    <div class="form-container">
+      <h1>Formulario Bancario</h1>
+      <form class="formularioCenter" id="transferir">
+        <label for="accountOut">Cuenta Origen</label>
+        <select id="accountOut" name="accountOut" required>
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="savings">Ahorros</option>
+          <option value="current">Corriente</option>
+          <option value="current">Vista</option>
+        </select>
+
+        <label for="accountIn">Cuenta destino:</label>
+        <input type="text" id="accountIn" name="accountIn" required />
+
+        <label for="amount">Monto:</label>
+        <input type="number" id="amount" name="amount" required />
+
+        <label for="Description">Descripcción</label>
+        <input type="text" id="Description" name="Description" required />
+
+        <label for="securityKey">Clave de Seguridad:</label>
+        <input type="password" id="securityKey" name="securityKey" required />
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
     <script type="module" src="transferir.js"></script>
   </body>
 </html>
