@@ -1,9 +1,11 @@
 package c19_65_t_java_js.NoCountry.SmartBank.model;
 
+import c19_65_t_java_js.NoCountry.SmartBank.enums.Divisas;
+import c19_65_t_java_js.NoCountry.SmartBank.enums.TipoCuenta;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 //Sara
@@ -15,9 +17,14 @@ public class Cuenta {
 
     private Long idCuenta;
     private int nroCuenta;
-    @OneToMany
-    private List <TipoCuenta> idTipoCuenta;
+    @Enumerated(EnumType.STRING)
+    private TipoCuenta tipoCuenta;
+    @Enumerated(EnumType.STRING)
+    private Divisas divisas;
     private  double saldo;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "idCliente", nullable = false)
+    @JsonIgnoreProperties("idCliente")
+    @JsonBackReference
     private Cliente  idCliente;
 }

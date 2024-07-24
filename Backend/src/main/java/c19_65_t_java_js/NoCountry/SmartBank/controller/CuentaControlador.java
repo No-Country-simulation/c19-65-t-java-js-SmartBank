@@ -34,7 +34,7 @@ public class CuentaControlador {
         return ResponseEntity.ok(cuentas);
     }
     
-     @PostMapping("/registar")
+     @PostMapping("/crear")
     public ResponseEntity<CuentaDTO> crearCuenta(@RequestBody CuentaDTO cuentaDTO) {
         CuentaDTO nuevaCuenta = cuentaServicio.guardarCuenta(cuentaDTO);
         return new ResponseEntity<>(nuevaCuenta, HttpStatus.CREATED);

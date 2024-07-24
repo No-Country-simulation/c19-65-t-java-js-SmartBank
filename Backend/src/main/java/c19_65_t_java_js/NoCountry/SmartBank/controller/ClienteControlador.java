@@ -20,7 +20,7 @@ public class ClienteControlador {
         List<ClienteDTO> clientes = clienteServicio.listarClientes();
         return ResponseEntity.ok(clientes);
     }
-    @PostMapping("/registar")
+    @PostMapping("/registrar")
     public ResponseEntity<ClienteDTO> crearCliente(@RequestBody ClienteDTO clienteDTO) {
         ClienteDTO nuevoCliente = clienteServicio.guardarCliente(clienteDTO);
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
@@ -31,7 +31,7 @@ public class ClienteControlador {
         return ResponseEntity.ok(clienteActualizado);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @GetMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarCliente(@PathVariable Long id) {
         clienteServicio.eliminarCliente(id);
         return ResponseEntity.noContent().build();

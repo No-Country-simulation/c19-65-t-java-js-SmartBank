@@ -1,12 +1,15 @@
 package c19_65_t_java_js.NoCountry.SmartBank.service;
 
-import c19_65_t_java_js.NoCountry.SmartBank.DTO.ClienteDTO;
+
 import c19_65_t_java_js.NoCountry.SmartBank.DTO.CuentaDTO;
 import c19_65_t_java_js.NoCountry.SmartBank.exception.ExceptionRequest;
 import c19_65_t_java_js.NoCountry.SmartBank.mapper.CuentaMapper;
+
 import c19_65_t_java_js.NoCountry.SmartBank.model.Cliente;
 import c19_65_t_java_js.NoCountry.SmartBank.model.Cuenta;
+import c19_65_t_java_js.NoCountry.SmartBank.repository.ClienteRepositorio;
 import c19_65_t_java_js.NoCountry.SmartBank.repository.CuentaRepositorio;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +22,11 @@ public class CuentaServicio {
     
     @Autowired
     private CuentaRepositorio cuentaRepositorio;
+    @Autowired
+
+    private ClienteRepositorio clienteRepositorio;
+
+
   
     
      public List<CuentaDTO> listarCuentas() {
@@ -30,19 +38,30 @@ public class CuentaServicio {
     
      @Transactional
     public CuentaDTO guardarCuenta(CuentaDTO cuentaDTO) {
-        Cuenta cuenta = new Cuenta();
+
+
+
+
+         Cuenta cuenta = new Cuenta();
 
         // Copiar campos simples
         cuenta.setNroCuenta(cuentaDTO.nroCuenta());
+        cuenta.setTipoCuenta(cuentaDTO.tipoCuenta());
+        cuenta.setDivisas(cuentaDTO.divisas());
         cuenta.setSaldo(cuentaDTO.saldo());
 
         // Manejar la relación con ID Cliente
-        cuenta.setIdCliente(cuentaDTO.idCliente());
-       
-        // Manejar la relación con tipos de Cuentas
-        cuenta.setIdTipoCuenta(cuentaDTO.idsTipoCuenta());
-       
-        Cuenta cuentaGuardado = cuentaRepositorio.save(cuenta);
+        //cuenta.setIdCliente(cuentaDTO.idCliente());
+         if (cuentaDTO.idCliente() != null) {
+             Cliente cliente = clienteRepositorio.findById(cuentaDTO.idCliente())
+                     .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con id: " + cuentaDTO.idCliente()));
+             cuenta.setIdCliente(cliente);  // Aquí establecemos el Cliente, no el Long
+         } else {
+             throw new IllegalArgumentException("El ID del cliente no puede ser nulo");
+         }
+
+
+         Cuenta cuentaGuardado = cuentaRepositorio.save(cuenta);
         return CuentaMapper.convertirEntidadDTO(cuentaGuardado);
     }
 
@@ -56,10 +75,10 @@ public class CuentaServicio {
         cuenta.setSaldo(cuentaDTO.saldo());
 
         // Actualizar relación con Cliente
-                cuenta.setIdCliente(cuentaDTO.idCliente());
+              //  cuenta.setIdCliente(cuentaDTO.idCliente());
 
         // Actualizar relación con tipos Cuentas
-         cuenta.setIdTipoCuenta(cuentaDTO.idsTipoCuenta());
+         cuenta.setTipoCuenta(cuentaDTO.tipoCuenta());
        
 
         Cuenta cuentaActualizada = cuentaRepositorio.save(cuenta);

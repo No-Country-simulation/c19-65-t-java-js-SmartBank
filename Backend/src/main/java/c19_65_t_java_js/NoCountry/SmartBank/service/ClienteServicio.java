@@ -1,6 +1,7 @@
 package c19_65_t_java_js.NoCountry.SmartBank.service;
 
 import c19_65_t_java_js.NoCountry.SmartBank.DTO.ClienteDTO;
+import c19_65_t_java_js.NoCountry.SmartBank.enums.TipoUsuario;
 import c19_65_t_java_js.NoCountry.SmartBank.exception.ExceptionRequest;
 import c19_65_t_java_js.NoCountry.SmartBank.mapper.ClienteMapper;
 import c19_65_t_java_js.NoCountry.SmartBank.model.Cliente;
@@ -45,7 +46,7 @@ public class ClienteServicio {
 
         // Manejar la relación con Tipo Usuario
      
-        cliente.setTipoUsuario(clienteDTO.tipoUsuario());
+        cliente.setTipoUsuario(TipoUsuario.CLIENTE);
 
         // Manejar la relación con Cuentas
         cliente.setIdCuenta(clienteDTO.idsCuentas());
@@ -70,7 +71,7 @@ public class ClienteServicio {
         cliente.setContrasenia(clienteDTO.contrasenia());
 
         // Actualizar relación con Usuario
-        cliente.setTipoUsuario(clienteDTO.tipoUsuario());
+        cliente.setTipoUsuario(TipoUsuario.CLIENTE);
 
         // Actualizar relación con Cuentas
         cliente.setIdCuenta(clienteDTO.idsCuentas());
