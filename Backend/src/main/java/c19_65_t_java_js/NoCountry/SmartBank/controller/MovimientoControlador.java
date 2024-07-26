@@ -2,8 +2,8 @@ package c19_65_t_java_js.NoCountry.SmartBank.controller;
 
 
 import c19_65_t_java_js.NoCountry.SmartBank.DTO.MovimientoDTO;
+import c19_65_t_java_js.NoCountry.SmartBank.DTO.MovimientoRespuestaDTO;
 import c19_65_t_java_js.NoCountry.SmartBank.service.MovimientoServicio;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +18,17 @@ public class MovimientoControlador {
     @Autowired
     private MovimientoServicio movimientoServicio;
 
-    @GetMapping("/enlistar")
-    public ResponseEntity<List<MovimientoDTO>> listarMovimientos(){
-        List<MovimientoDTO> movimientoDTOList = movimientoServicio.mostraraTodosMovimientos();
+    @GetMapping("/{usuario}")
+    public ResponseEntity<List<MovimientoRespuestaDTO>> listarMovimientos(@PathVariable Long usuario){
+        List<MovimientoRespuestaDTO> movimientoDTOList = movimientoServicio.mostraraTodosMovimientos(usuario);
         return ResponseEntity.ok(movimientoDTOList);
     }
 
-    @PostMapping("/registar")
-    public ResponseEntity<MovimientoDTO>  crearMovimiento(
+    @PostMapping("/registrar")
+    public ResponseEntity<MovimientoRespuestaDTO>  crearMovimiento(
             @RequestBody MovimientoDTO movimientoDTO
     ){
-        MovimientoDTO nuevoMovimiento = movimientoServicio.guardarMovimiento(movimientoDTO);
+        MovimientoRespuestaDTO nuevoMovimiento = movimientoServicio.guardarMovimiento(movimientoDTO);
         return new ResponseEntity<>(nuevoMovimiento, HttpStatus.CREATED);
     }
 

@@ -1,7 +1,8 @@
 package c19_65_t_java_js.NoCountry.SmartBank.DTO;
 
 import c19_65_t_java_js.NoCountry.SmartBank.model.Cuenta;
-import c19_65_t_java_js.NoCountry.SmartBank.model.TipoUsuario;
+import c19_65_t_java_js.NoCountry.SmartBank.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public record ClienteDTO(
         String pais,
         TipoUsuario tipoUsuario,
         String contrasenia,
+        @JsonManagedReference
         List<Cuenta> idsCuentas
 ) {
 }

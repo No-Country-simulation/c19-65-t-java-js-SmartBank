@@ -27,37 +27,37 @@ import org.springframework.web.bind.annotation.RestController;
 public class CuentaControlador {
    @Autowired
     private CuentaServicio cuentaServicio;
-
+   
     @GetMapping("/enlistar")
     public ResponseEntity<List<CuentaDTO>> listarCuentas() {
         List<CuentaDTO> cuentas = cuentaServicio.listarCuentas();
         return ResponseEntity.ok(cuentas);
     }
-
-     @PostMapping("/registar")
+    
+     @PostMapping("/crear")
     public ResponseEntity<CuentaDTO> crearCuenta(@RequestBody CuentaDTO cuentaDTO) {
         CuentaDTO nuevaCuenta = cuentaServicio.guardarCuenta(cuentaDTO);
         return new ResponseEntity<>(nuevaCuenta, HttpStatus.CREATED);
     }
-
+   
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<CuentaDTO> actualizarCuenta(@PathVariable Long id, @RequestBody CuentaDTO cuentaDTO) {
         CuentaDTO cuentaActualizada = cuentaServicio.actualizarCuenta(id, cuentaDTO);
         return ResponseEntity.ok(cuentaActualizada);
     }
-
+    
      @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarCuenta(@PathVariable Long id) {
         cuentaServicio.eliminarCuenta(id);
         return ResponseEntity.noContent().build();
     }
-
+    
      @GetMapping("/{id}")
     public ResponseEntity<CuentaDTO> obtenerCuentaPorId(@PathVariable Long id) {
         CuentaDTO cuenta = cuentaServicio.buscarCuentaPorId(id);
         return ResponseEntity.ok(cuenta);
     }
-
-
-
+    
+    
+    
 }

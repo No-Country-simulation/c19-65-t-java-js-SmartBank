@@ -8,8 +8,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "Movimiento")
 @Table(name = "movimiento")
 public class Movimiento {
@@ -19,7 +17,7 @@ public class Movimiento {
 
 //    @ManyToOne
 //    @JoinColumn(name = "idCuenta")
-    private String usuario;
+    private Long usuario;
 
     private Integer monto;
 
@@ -34,12 +32,4 @@ public class Movimiento {
     private LocalDateTime fechaMovimiento;
 
 
-    public Movimiento(MovimientoDTO dtoDatosMovimiento) {
-
-        this.monto = dtoDatosMovimiento.monto();
-        this.ctaOrigen = dtoDatosMovimiento.ctaOrigen();
-        this.ctaDestino = dtoDatosMovimiento.ctaDestino();
-        this.descripcionMovimiento = dtoDatosMovimiento.descripcionMovimiento();
-        this.fechaMovimiento = LocalDateTime.now();
-    }
 }

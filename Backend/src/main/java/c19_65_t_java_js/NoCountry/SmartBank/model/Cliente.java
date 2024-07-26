@@ -1,5 +1,9 @@
 package c19_65_t_java_js.NoCountry.SmartBank.model;
 
+import c19_65_t_java_js.NoCountry.SmartBank.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,8 +33,11 @@ public class Cliente {
  /* @OneToOne
   @JoinColumn(name = "idUsuario")
   private  Usuario idUsuario; */
-  @OneToMany
+  @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "idCliente")
+  @JsonIgnoreProperties("idCliente")
+  @JsonBackReference
   private List<Cuenta> idCuenta;
+  @Enumerated(EnumType.STRING)
   private TipoUsuario tipoUsuario;
   private String contrasenia;
           }
