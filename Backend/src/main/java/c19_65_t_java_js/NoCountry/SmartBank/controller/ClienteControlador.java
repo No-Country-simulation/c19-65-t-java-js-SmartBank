@@ -2,9 +2,11 @@ package c19_65_t_java_js.NoCountry.SmartBank.controller;
 
 import c19_65_t_java_js.NoCountry.SmartBank.DTO.ClienteDTO;
 import c19_65_t_java_js.NoCountry.SmartBank.service.ClienteServicio;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +23,12 @@ public class ClienteControlador {
         return ResponseEntity.ok(clientes);
     }
     @PostMapping("/registrar")
-    public ResponseEntity<ClienteDTO> crearCliente(@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> crearCliente(@RequestBody @Valid ClienteDTO clienteDTO) {
         ClienteDTO nuevoCliente = clienteServicio.guardarCliente(clienteDTO);
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
     }
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<ClienteDTO> actualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> actualizarCliente(@PathVariable @Valid Long id, @RequestBody ClienteDTO clienteDTO) {
         ClienteDTO clienteActualizado = clienteServicio.actualizarCliente(id, clienteDTO);
         return ResponseEntity.ok(clienteActualizado);
     }

@@ -16,7 +16,9 @@ public class MovimientoMapper {
                 movimiento.getSaldo(),
                 movimiento.getCtaOrigen(),
                 movimiento.getCtaDestino(),
-                movimiento.getDescripcionMovimiento()
+                movimiento.getDescripcionMovimiento(),
+                movimiento.getFechaMovimiento()
+
         );
     }
 

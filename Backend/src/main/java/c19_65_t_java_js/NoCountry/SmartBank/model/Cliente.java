@@ -3,11 +3,14 @@ package c19_65_t_java_js.NoCountry.SmartBank.model;
 import c19_65_t_java_js.NoCountry.SmartBank.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
+
 import java.time.LocalDateTime;
+
 
 import java.util.List;
 
@@ -16,12 +19,15 @@ import java.util.List;
 //CHRIS
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente  {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 
   private Long idCliente;
+  @NotBlank
+  @Email
+  @Column(unique = true)
   private String email;
   private int dni ;
   private LocalDateTime fechaNacimiento ;
@@ -37,7 +43,14 @@ public class Cliente {
   @JsonIgnoreProperties("idCliente")
   @JsonBackReference
   private List<Cuenta> idCuenta;
+
   @Enumerated(EnumType.STRING)
   private TipoUsuario tipoUsuario;
+
+  @NotBlank
+  @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
   private String contrasenia;
-          }
+
+
+
+}

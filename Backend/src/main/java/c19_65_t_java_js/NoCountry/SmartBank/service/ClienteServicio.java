@@ -10,17 +10,29 @@ import c19_65_t_java_js.NoCountry.SmartBank.model.Cliente;
 import c19_65_t_java_js.NoCountry.SmartBank.repository.ClienteRepositorio;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ClienteServicio {
+public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private ClienteRepositorio clienteRepositorio;
-  
+
 
     public List<ClienteDTO> listarClientes() {
         List<Cliente> clientes = clienteRepositorio.findAll();
@@ -29,9 +41,13 @@ public class ClienteServicio {
                 .collect(Collectors.toList());
     }
 
+
+
     @Transactional
     public ClienteDTO guardarCliente(ClienteDTO clienteDTO) {
+
         Cliente cliente = new Cliente();
+
 
         // Copiar campos simples
         cliente.setEmail(clienteDTO.email());
@@ -42,7 +58,7 @@ public class ClienteServicio {
         cliente.setTelefono(clienteDTO.telefono());
         cliente.setDomicilio(clienteDTO.domicilio());
         cliente.setPais(clienteDTO.pais());
-        cliente.setContrasenia(clienteDTO.contrasenia());
+        cliente.setContrasenia(new BCryptPasswordEncoder().encode( clienteDTO.contrasenia()));
 
         // Manejar la relación con Tipo Usuario
      
@@ -99,4 +115,32 @@ public class ClienteServicio {
                 .collect(Collectors.toList());
     }
 
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Cliente> optional = clienteRepositorio.findByEmail(email);
+        if (optional.isPresent()){
+            Cliente cliente = optional.get();
+            List<GrantedAuthority> permisos = new ArrayList<>();
+            // Asegúrate de que `getRol()` devuelve el rol correcto
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + cliente.getTipoUsuario().name());
+            permisos.add(grantedAuthority);
+            System.out.println("Tipo de usuario: " + cliente.getTipoUsuario().name());
+            System.out.println("Rol asignado: " + grantedAuthority.getAuthority());
+            // Devolvemos un objeto User de Spring Security
+            return new org.springframework.security.core.userdetails.User(optional.get().getEmail(), optional.get().getContrasenia(), permisos);
+
+
+        } else {
+            throw new UsernameNotFoundException("Usuario con el correo " + email + " no encontrado.");
+
+        }
+    }
+
+
+    public Optional<Cliente> findByUserName(String mail) {
+        return clienteRepositorio.findByEmail(mail);
+    }
 }
+
+

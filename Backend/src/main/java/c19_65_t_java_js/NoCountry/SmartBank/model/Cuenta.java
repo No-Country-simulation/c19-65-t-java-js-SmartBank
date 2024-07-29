@@ -16,11 +16,16 @@ public class Cuenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long idCuenta;
+
+    @Column(unique = true)
     private int nroCuenta;
+
     @Enumerated(EnumType.STRING)
     private TipoCuenta tipoCuenta;
+
     @Enumerated(EnumType.STRING)
     private Divisas divisas;
+
     private  double saldo;
     @ManyToOne
     @JoinColumn(name = "idCliente", nullable = false)

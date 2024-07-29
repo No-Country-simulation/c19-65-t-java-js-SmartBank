@@ -4,9 +4,11 @@ package c19_65_t_java_js.NoCountry.SmartBank.controller;
 import c19_65_t_java_js.NoCountry.SmartBank.DTO.MovimientoDTO;
 import c19_65_t_java_js.NoCountry.SmartBank.service.MovimientoServicio;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class MovimientoControlador {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<MovimientoDTO>  crearMovimiento(
+    public ResponseEntity<MovimientoDTO>  crearMovimiento(@Valid
             @RequestBody MovimientoDTO movimientoDTO
     ){
         MovimientoDTO nuevoMovimiento = movimientoServicio.guardarMovimiento(movimientoDTO);
