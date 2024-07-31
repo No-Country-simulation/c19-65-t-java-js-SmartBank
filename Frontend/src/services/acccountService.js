@@ -1,10 +1,10 @@
-// * GET - Dashboard && Transferencias
+// * GET - Dashboard✅ && Transferencias✅
 export async function getAccounts(UsuarioID) { 
   console.log('GetAccounts')
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/usuario/${UsuarioID}/cuentas`, {
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/cuentas/enlistar`, {
         method: "GET"
       });
       
@@ -16,7 +16,7 @@ export async function getAccounts(UsuarioID) {
   
       if (resp.status === 200) {
         // @ok - Acceso valido
-        const {cuentas} = await resp.json()
+        const cuentas = await resp.json()
         return cuentas
       }
     } else {
@@ -86,7 +86,7 @@ export async function getMovements(AccountID) {
   }
 }
 
-// * POST - Transferencias
+// * POST - Transferencias✅
 export async function setMovement(movementInfo) {
   // Agregar una transacción a una cuenta
   // ? Cuenta destino puede ser interna o externa: Ver campo Banco === SmartBank
@@ -94,7 +94,7 @@ export async function setMovement(movementInfo) {
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/movimientos`, {
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/movimientos/registrar`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -102,13 +102,13 @@ export async function setMovement(movementInfo) {
         body:  JSON.stringify(movementInfo)
       });
       
-      if (resp.status !== 200) {
+      if (resp.status !== 201) {
         // @fail - Falla solicitud
         const { error } = await resp.json()
         throw new Error(`${resp.status} - ${error}`)
       }
   
-      if (resp.status === 200) {
+      if (resp.status === 201) {
         // @ok - Acceso valido
         return {response: true, message: 'Transacción exitosa'}
       }
@@ -129,28 +129,33 @@ export async function setMovement(movementInfo) {
   }
 }
 
-// * POST - Crear Cuenta
-export async function createAccount(accountInfo){
+// * POST - Crear Cuenta✅
+export async function createAccount(accountType){
   // Crear una nueva cuenta de usuario
   console.log('Create Account')
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/cuentas`, {
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/cuentas/crear`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
-        body:  JSON.stringify(accountInfo)
+        body:  JSON.stringify({
+          "idCliente": 1,
+          "nroCuenta": Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000,
+          "tipoCuenta": accountType,
+          "saldo": 1
+        })
       });
       
-      if (resp.status !== 200) {
+      console.log(resp.status)
+      if (resp.status !== 201) {
         // @fail - Falla solicitud
-        const { error } = await resp.json()
-        throw new Error(`${resp.status} - ${error}`)
+        throw new Error(`${resp.status} - Error al crear la cuenta`)
       }
   
-      if (resp.status === 200) {
+      if (resp.status === 201) {
         // @ok - Acceso valido
         return {response: true, message: 'Cuenta creada con exito'}
       }
@@ -167,6 +172,7 @@ export async function createAccount(accountInfo){
       }
     }
   } catch (e) {
+    console.log(e.message)
     return {response: false, message: e.message}
   }
 }

@@ -1,32 +1,33 @@
 import { setLoginValues } from '@auth/Auth'
 import { deleteAllStorage } from "@services/storageService"
 
+// * POST - Main✅
 export async function logIn(formData) { 
   console.log('logIn')
   try {
     if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/login`, {
+      console.log(formData)
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/iniciarsesion`, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          'content-Type': 'application/json'
         },
         body:  JSON.stringify(formData)
       });
-      
+      console.log(resp.status)
       if (resp.status !== 200) {
         // @fail - Acceso denegado
-        const { error } = await resp.json()
+        const error = await resp.text()
         throw new Error(`${resp.status} - ${error}`)
       }
   
       if (resp.status === 200) {
         // @ok - Acceso valido
-        const {userName, tipoUsuario, token} = await resp.json()
-        
-        return setLoginValues (userName, tipoUsuario, token)
+        return setLoginValues (formData.email, 'CLIENTE', crypto.randomUUID())
       }
     } else {
       // ? Sección para probar sin backend
+      console.log('sinBack')
       const status = 200 // 200 | 401
       if (status !== 200) {
         // @fail - Acceso denegado sin backend
@@ -38,10 +39,12 @@ export async function logIn(formData) {
       }
     }
   } catch (e) {
+    console.log(e)
     return {response: false, message: e.message}
   }
 }
 
+// * POST - Main
 export async function signUp (formData) {
   return await fetch(`${import.meta.env.VITE_PUBLIC_API}/newUser`, {
     method: "POST",
@@ -52,6 +55,7 @@ export async function signUp (formData) {
   });
 }
 
+// * All Pages
 export function logOut() {
   console.log('logOut')
   deleteAllStorage()

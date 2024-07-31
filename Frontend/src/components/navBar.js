@@ -12,18 +12,19 @@ checkLogin()
 // }
 
 const menuOptions = {
-  Cliente: [
+  CLIENTE: [
     {label: 'Dashboard', url: '/dashboard/'},
     {label: 'Crear cuenta', url: '/crearCuenta/'},
     {label: 'Movimientos', url: '/movimientos/'},
     {label: 'Transferir', url: '/transferir/'}
   ],
-  Admin: []
+  ADMIN: []
 };
 
 //
 (async () => {
   try {
+    
     const userRole = await decryptString(sessionStorage.getItem('TU'))
     if (!userRole) throw new Error('Error de autenticación')
     
@@ -143,6 +144,7 @@ const menuOptions = {
     })
 
   } catch (e) {
+    console.log(e)
     logOut()
   }
 
