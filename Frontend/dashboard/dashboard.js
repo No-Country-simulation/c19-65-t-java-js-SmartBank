@@ -42,8 +42,8 @@ getAccounts('Pepito')
       // @ok - Opciones si el usuario tiene cuentas
       // Actualización listado de cuentas
       const htmlAccountOpts = accountsKeys.map(account => {
-        const { tipoCuenta } = accountsDetails[account]
-        return `<option value="${account}">${account} - ${tipoCuenta}</option>`
+        const { nroCuenta, tipoCuenta } = accountsDetails[account]
+        return `<option value="${nroCuenta}">${nroCuenta} - ${tipoCuenta}</option>`
       })
       $accountsList.innerHTML = htmlAccountOpts
       updateAccountCard(accountsKeys[0])
@@ -51,9 +51,10 @@ getAccounts('Pepito')
 
     //Funcion, actualizar tarjeta Cuenta
     function updateAccountCard (account) {
-      const saldoCuenta = accountsDetails[account].saldo.toLocaleString('es-ES')
+      const { nroCuenta, saldo } = accountsDetails[account]
+      const saldoCuenta = saldo.toLocaleString('es-ES')
       $saldo.innerHTML = `$${saldoCuenta}`
-      $btn_Movimientos.href = `/movimientos/?cuenta=${account}`
+      $btn_Movimientos.href = `/movimientos/?cuenta=${nroCuenta}`
       // $btn_Movimientos.style.pointerEvents = 'initial'
       // $tarjetaCuenta.style.pointerEvents = 'initial'
       // $tarjetaCuenta.classList.remove('opacity-children')
