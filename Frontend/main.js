@@ -13,16 +13,16 @@ deleteAllStorage()
 document.querySelector('#login').addEventListener('submit', async (e) => {
   e.preventDefault()
   console.log('#login');
-  const { nombre: name, contraseña: password } = Object.fromEntries(new FormData(e.target))
-  const resp = await logIn({ name, password })
+  const { email, contraseña: contrasenia } = Object.fromEntries(new FormData(e.target))
+  const resp = await logIn({ email, contrasenia })
   
   // ! Acción en caso de fallar el login
   // ! {response: false, message: '401 - El usuario no existe'}
   if(!resp.response){
-    displayModal('Usuario y/o contraseña incorrecto')
-    // showErrorMessage(input, 'message')
+    displayModal(resp.message)
   }
 })
+// user@smartbank.com
 
 document.querySelector('#signup').addEventListener('submit', async (e) => {
   e.preventDefault()
