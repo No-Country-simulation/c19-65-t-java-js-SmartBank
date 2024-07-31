@@ -44,15 +44,32 @@ export async function logIn(formData) {
   }
 }
 
-// * POST - Main
+// * POST - Main✅
 export async function signUp (formData) {
-  return await fetch(`${import.meta.env.VITE_PUBLIC_API}/newUser`, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body:  JSON.stringify(formData)
-  });
+  try {
+    const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/clientes/registrar`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify(formData)
+    });
+  
+    console.log(resp.status)
+    if (resp.status !== 201) {
+      // @fail - Acceso denegado
+      const error = await resp.text()
+      throw new Error(`${resp.status} - ${error}`)
+    }
+  
+    if (resp.status === 201) {
+      // @ok - Acceso valido
+      return {response: true, message: 'Usuario registrado con exito'}
+    }
+  } catch (e) {
+    return {response: false, message: e.message}
+  }
+
 }
 
 // * All Pages

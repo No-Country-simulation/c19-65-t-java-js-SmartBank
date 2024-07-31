@@ -26,7 +26,8 @@ const invList = []
 // * Obtener cuentas del usuario
 getAccounts('Pepito')
   .then(accountsDetails => {
-    const accountsKeys = Object.keys(accountsDetails)
+    const userAccounts = accountsDetails.filter(({idCliente}) => idCliente === 1)
+    const accountsKeys = Object.keys(userAccounts)
     if(accountsKeys.length === 0) {
       // @fail - Opciones si el usuario no tiene ninguna cuenta
       $accountsList.innerHTML = `<option value="">No tienes cuentas asociadas</option>`
@@ -42,16 +43,17 @@ getAccounts('Pepito')
       // @ok - Opciones si el usuario tiene cuentas
       // Actualización listado de cuentas
       const htmlAccountOpts = accountsKeys.map(account => {
-        const { nroCuenta, tipoCuenta } = accountsDetails[account]
+        const { nroCuenta, tipoCuenta } = userAccounts[account]
         return `<option value="${nroCuenta}">${nroCuenta} - ${tipoCuenta}</option>`
       })
       $accountsList.innerHTML = htmlAccountOpts
-      updateAccountCard(accountsKeys[0])
+      updateAccountCard($accountsList.value)
     }
 
     //Funcion, actualizar tarjeta Cuenta
     function updateAccountCard (account) {
-      const { nroCuenta, saldo } = accountsDetails[account]
+      const accountData = userAccounts.find(({nroCuenta}) => nroCuenta == account)
+      const { nroCuenta, saldo } = accountData
       const saldoCuenta = saldo.toLocaleString('es-ES')
       $saldo.innerHTML = `$${saldoCuenta}`
       $btn_Movimientos.href = `/movimientos/?cuenta=${nroCuenta}`
@@ -76,7 +78,7 @@ getAccounts('Pepito')
           $saldoOcultoIcn.classList.remove('hidden')
           $saldoActivoIcn.classList.add('hidden')
           const ActiveAccount = $accountsList.value
-          const saldoCuenta = accountsDetails[ActiveAccount].saldo.toLocaleString('es-ES')
+          const saldoCuenta = userAccounts[ActiveAccount].saldo.toLocaleString('es-ES')
           $saldo.innerHTML = `$${saldoCuenta}`
         }
         $saldo.dataset.visible = !isVisibleBalance

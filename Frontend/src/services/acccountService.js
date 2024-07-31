@@ -46,12 +46,8 @@ export async function getMovements(AccountID) {
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){
-      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/cuentas/${accountInfo.id}`, {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body:  JSON.stringify(AccountID)
+      const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API}/movimientos/enlistar`, {
+        method: "GET"
       });
       
       if (resp.status !== 200) {
@@ -62,7 +58,7 @@ export async function getMovements(AccountID) {
   
       if (resp.status === 200) {
         // @ok - Acceso valido
-        const {movimientos} = await resp.json()
+        const movimientos = await resp.json()
         return {response: true, data: movimientos}
       }
     } else {
@@ -91,6 +87,7 @@ export async function setMovement(movementInfo) {
   // Agregar una transacción a una cuenta
   // ? Cuenta destino puede ser interna o externa: Ver campo Banco === SmartBank
   console.log('Set Movements')
+  console.log(movementInfo)
   try {
     // ? Sección con backend
     if (import.meta.env.VITE_PUBLIC_API){

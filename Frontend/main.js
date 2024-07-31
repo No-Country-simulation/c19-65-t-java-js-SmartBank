@@ -27,17 +27,22 @@ document.querySelector('#login').addEventListener('submit', async (e) => {
 document.querySelector('#signup').addEventListener('submit', async (e) => {
   e.preventDefault()
   console.log('#signup')
-  const { nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2} = Object.fromEntries(new FormData(e.target))
-
+  const { nombre, apellido, dni, fechaNacimiento: fecha, correo:email, telefono, direccion:domicilio, passw1: contrasenia, passw2} = Object.fromEntries(new FormData(e.target))
+  const fechaNacimiento = fecha + "T00:00:00"
   // TODO - Conexion con el backend
-  // const resp = await signUp({ nombre, apellido, dni, fechaNacimiento, email, telefono, direccion, passw1, passw2})
+  const resp = await signUp({ email, dni, fechaNacimiento, nombre, apellido, telefono, domicilio, contrasenia,  pais: "Argentina"})
   
   // ! Acción en caso de fallar: Usuario ya existe
   // ! {response: false, message: 'Fallo en el registro'}
-  // if(!resp.response){
+  if(!resp.response){
     displayModal('Fallo al registrar')
   //   showErrorMessage(input, 'message')
-  // }
+  } else {
+    displayModal('Registro exitoso')
+    setTimeout(() => {
+      window.location.href = '/'
+    },2500)
+  }
 })
 
 // * Funcionalidad ver/ocultar password

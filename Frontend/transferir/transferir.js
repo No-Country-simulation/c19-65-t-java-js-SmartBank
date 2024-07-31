@@ -25,7 +25,7 @@ liveValidation(transferBtn, transferInputs)
         displayModal("El usuario no tiene cuentas para realizar transferencias")
         setTimeout(() => {
           window.location.href = '/dashboard/'
-        }, 3000)
+        }, 2500)
       } else {
         // @ok - Opciones si el usuario tiene cuentas
         const htmlAccountOpts = accountsKeys.map(account => {
@@ -51,10 +51,10 @@ liveValidation(transferBtn, transferInputs)
           // ! Acción en caso de fallar la transferencia
           // ! {response: false, message: '401 - El usuario no existe'}
           if(!resp.response) {
-            displayModal("Transacción fallida.");
+            displayModal("Transacción fallida.")
           } else {
             // Mostrar ventana emergente de confirmación
-            displayModal("Su transferencia se ha realizado con éxito!");
+            displayModal("Su transferencia se ha realizado con éxito!")
           }
         });
     })

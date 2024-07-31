@@ -35,7 +35,7 @@
               <th class="py-2 px-4 border-b">Saldo</th>
             </tr>
           </thead>
-          <tbody class="bg-blue-50">
+          <tbody class="bg-blue-50" id='movBody'>
             <tr>
               <td class="py-2 px-4 text-center border-b">------</td>
               <td class="py-2 px-4 text-center border-b">------</td>
@@ -44,9 +44,11 @@
               <td class="py-2 px-4 text-center border-b">------</td>
               <td class="py-2 px-4 text-center border-b">------</td>
             </tr>
-            
           </tbody>
         </table>
+      </div>
+      <div class='pt-5 hidden' id='errorMsg'>
+        <span class='text-red-900 font-bold'> No existen movimientos en la cuenta </span>
       </div>
     </div>
     <script type="module" src="movimientos.js"></script>
