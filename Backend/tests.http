@@ -8,13 +8,16 @@ content-type: application/json
     "contrasenia": "123456789"
 }
 
+### Obtener todos los usuarios
+GET http://localhost:8080/clientes/enlistar
+
 ### Registrar nuevo usuario
 POST http://localhost:8080/clientes/registrar
 content-type: application/json
 
 { 
-    "email": "test@test.com",
-    "dni": 123456, 
+    "email": "test2@test.com",
+    "dni": 22222, 
     "fechaNacimiento": "2024-07-24T15:30:00",
     "nombre": "Pepito", 
     "apellido": "Arias", 
@@ -32,8 +35,8 @@ POST http://localhost:8080/cuentas/crear
 content-type: application/json
 
 { 
-    "idCliente": 1,
-    "nroCuenta": 7654321, 
+    "idCliente": 2,
+    "nroCuenta": 4564567, 
     "tipoCuenta": "CTACORRIENTE", 
     "saldo": 10000
 }
