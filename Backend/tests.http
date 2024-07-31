@@ -1,0 +1,55 @@
+### SMARTBANK BACKEND
+### LOGIN
+GET http://localhost:8080/iniciarsesion
+content-type: application/json
+
+{ 
+    "email": "user@smartbank.com", 
+    "contrasenia": "123456789"
+}
+
+### Registrar nuevo usuario
+POST http://localhost:8080/clientes/registrar
+content-type: application/json
+
+{ 
+    "email": "test@test.com",
+    "dni": 123456, 
+    "fechaNacimiento": "2024-07-24T15:30:00",
+    "nombre": "Pepito", 
+    "apellido": "Arias", 
+    "telefono": 123456789, 
+    "domicilio": "Domicilio Cliente", 
+    "contrasenia": "abc123",
+    "pais": "Colombia"
+}
+
+### Obtener cuentas "usuario"
+GET http://localhost:8080/cuentas/enlistar
+
+### Crear nueva cuenta "userID 1"
+POST http://localhost:8080/cuentas/crear
+content-type: application/json
+
+{ 
+    "idCliente": "1",
+    "nroCuenta": 123456789, 
+    "tipoCuenta": "CTACORRIENTE", 
+    "saldo": 0
+}
+
+### Obtener movimientos cuenta
+GET http://localhost:8080/movimientos/enlistar
+
+### Crear movimiento en cuenta
+POST http://localhost:8080/movimientos/registar
+content-type: application/json
+
+{ 
+    "usuario": "Pepito",
+    "monto": 123456789, 
+    "saldo": 0,
+    "ctaOrigen": "12465",
+    "ctaDestino": "asd12f",
+    "descripcionMovimiento": "asdfasdfsdf"
+}
