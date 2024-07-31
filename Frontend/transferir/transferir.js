@@ -7,13 +7,13 @@ import { displayModal } from '@auth/Auth'
 // import { setMovement } from '@services/acccountService'
 
 //* Live Validation - Formulario Transferir
-const transferBtn = document.querySelector('#transferir button')
-const transferInputs = document.querySelectorAll('#transferir select, #transferir input')
+const transferBtn = document.querySelector('#bankForm button')
+const transferInputs = document.querySelectorAll('#bankForm select, #bankForm input')
 liveValidation(transferBtn, transferInputs)
 
 //* Event Listeners
 document
-  .getElementById("transferir")
+  .getElementById("bankForm")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log('transferir')
