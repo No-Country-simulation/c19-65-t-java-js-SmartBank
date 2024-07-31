@@ -4,7 +4,7 @@ import "@styles/style.css";
 
 import { liveValidation } from '@helpers/liveValidations'
 import { displayModal } from '@auth/Auth'
-// import { createAccount } from '@services/acccountService'
+import { createAccount } from '@services/acccountService'
 
 //* Live Validation - Formulario Transferir
 
@@ -18,13 +18,11 @@ document.querySelector('#crearCuenta').addEventListener('submit', async (e) => {
   e.preventDefault()
   console.log('CrearCuenta')
     const { accountType, password } = Object.fromEntries(new FormData(e.target))
-    console.log(accountType, password)
-    // const resp = await createAccount({ accountType, password })
+    const resp = await createAccount(accountType)
     
     // ! Acción en caso de fallar la creación de la cuenta
     // ! {response: false, message: '401 - El usuario no existe'}
-    const resp = {response: false}
-    if(resp.response){
+    if(!resp.response){
       displayModal('Transacción Fallida')
     } else {
       displayModal('Cuenta creada con exito')
