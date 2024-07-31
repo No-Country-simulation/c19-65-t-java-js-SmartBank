@@ -1,6 +1,6 @@
 ### SMARTBANK BACKEND
 ### LOGIN
-GET http://localhost:8080/iniciarsesion
+POST http://localhost:8080/iniciarsesion
 content-type: application/json
 
 { 
@@ -32,24 +32,24 @@ POST http://localhost:8080/cuentas/crear
 content-type: application/json
 
 { 
-    "idCliente": "1",
-    "nroCuenta": 123456789, 
+    "idCliente": 1,
+    "nroCuenta": 7654321, 
     "tipoCuenta": "CTACORRIENTE", 
-    "saldo": 0
+    "saldo": 10000
 }
 
 ### Obtener movimientos cuenta
 GET http://localhost:8080/movimientos/enlistar
 
 ### Crear movimiento en cuenta
-POST http://localhost:8080/movimientos/registar
+POST http://localhost:8080/movimientos/registrar
 content-type: application/json
 
 { 
     "usuario": "Pepito",
-    "monto": 123456789, 
-    "saldo": 0,
-    "ctaOrigen": "12465",
+    "monto": 123456, 
+    "saldo": -3,
+    "ctaOrigen": "1234567",
     "ctaDestino": "asd12f",
     "descripcionMovimiento": "asdfasdfsdf"
 }

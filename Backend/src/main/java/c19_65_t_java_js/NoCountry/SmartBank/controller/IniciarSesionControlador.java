@@ -30,7 +30,7 @@ public class IniciarSesionControlador {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    @GetMapping("/iniciarsesion")
+    @PostMapping("/iniciarsesion")
     public ResponseEntity<String> login(@RequestBody IniciarSesionDTO iniciarSesionDTO) {
         Optional<Cliente> clienteOptional = clienteRepositorio.findByEmail(iniciarSesionDTO.email());
 
